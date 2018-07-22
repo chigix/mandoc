@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+const Commander = require('commander');
+const { HtmlTemplateGenerator } = require('../dist/commanders');
+
+Commander.version(require('../package.json').version)
+    .description('Markdown Document Management Tool');
+
+HtmlTemplateGenerator.configureOptions(
+    Commander.version(
+        require('../package.json').version
+    ).description(HtmlTemplateGenerator.description
+    ).arguments(HtmlTemplateGenerator.arguments)
+).action(HtmlTemplateGenerator.receiver);
+
+if (!process.argv.slice(2).length) {
+    Commander.outputHelp();
+    process.exit();
+}
+
+Commander.parse(process.argv);

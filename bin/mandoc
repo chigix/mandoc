@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+const Commander = require('commander');
+const { DocConverter } = require('../dist/commanders');
+
+DocConverter.configureOptions(
+    Commander.version(
+        require('../package.json').version, '-v, --version'
+    ).description(DocConverter.description
+    ).arguments(DocConverter.arguments)
+).action(DocConverter.receiver);
+
+if (!process.argv.slice(2).length) {
+    Commander.outputHelp();
+    process.exit();
+}
+
+Commander.parse(process.argv);
