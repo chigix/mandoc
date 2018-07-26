@@ -6,7 +6,7 @@ DocConverter.configureOptions(
     Commander.version(
         require('../package.json').version, '-v, --version'
     ).description(DocConverter.description
-    ).arguments(DocConverter.arguments)
+    ).usage(DocConverter.arguments)
 ).action(DocConverter.receiver);
 
 if (!process.argv.slice(2).length) {

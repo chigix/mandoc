@@ -7,7 +7,7 @@ Commander.version(require('../package.json').version, '-v, --version')
 Cmds.DocConverter.configureOptions(
   Commander.command('convert')
     .description(Cmds.DocConverter.description)
-    .arguments(Cmds.DocConverter.arguments) as typeof Commander,
+    .usage(Cmds.DocConverter.usage) as typeof Commander,
 ).action(Cmds.DocConverter.receiver);
 
 Cmds.HtmlTemplateGenerator.configureOptions(
