@@ -3,5 +3,4 @@
         "Cmds",
         "mandoc"
     ],
-    "jest.autoEnable": true
 }

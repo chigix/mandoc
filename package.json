@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "bin": {
     "mandoc": "./bin/mandoc",
-    "mandoc-pdf": "./bin/mandoc-pdf"
+    "mandoc-gen": "./bin/mandoc-gen"
   },
   "scripts": {
     "mandoc": "ts-node ./src/index.ts",
@@ -38,14 +38,26 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
+    "jquery": "^3.3.1",
+    "mathjax": "^2.7.5",
+    "phantom": "^6.0.3",
+    "phantomjs-prebuilt": "^2.1.16",
     "remarkable": "^1.7.1",
     "rxjs": "^6.2.2",
+    "slash": "^2.0.0",
+    "swig-templates": "^2.0.2",
+    "through2": "^2.0.3",
     "tmp": "0.0.33"
   },
   "devDependencies": {
     "@types/jest": "^23.3.0",
+    "@types/jquery": "^3.3.5",
     "@types/node": "^8.9.4",
+    "@types/phantom": "^3.2.4",
     "@types/remarkable": "^1.7.0",
+    "@types/swig": "0.0.29",
+    "@types/through2": "^2.0.33",
+    "@types/tmp": "0.0.33",
     "jest": "^23.4.1",
     "jest-config": "^23.4.1",
     "ts-jest": "^23.0.1",
