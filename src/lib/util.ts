@@ -6,7 +6,7 @@ const slash = require('slash');
 export function urlFor(p: string, ctx: {
   baseDir: fs.PathLike,
   rootDir: fs.PathLike,
-}) {
+}): string {
   const root_dir_path = isString(ctx.rootDir) ?
     ctx.rootDir : ctx.rootDir.toString();
   const base_dir_path = isString(ctx.baseDir) ?
