@@ -123,10 +123,11 @@ export function renderHtml(ctx: {
               + url + '"></script>');
           },
         }));
-
-      return flush(null, html_result);
+      this.push(html_result);
     } catch (error) {
       return flush(error, null);
     }
+
+    return flush();
   });
 }
