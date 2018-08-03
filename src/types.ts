@@ -42,6 +42,6 @@ export interface TemplateConfiguration {
     //                    in processStream.
   ) => never;
   helper?: (register:
-    (name: string, fn: (...args: (string | Object)[]) => string) => never,
+    (name: string, fn: (...args: (string | Object)[]) => string) => void,
   ) => never;
 }
