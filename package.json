@@ -1,7 +1,7 @@
 {
   "name": "mandoc",
   "version": "1.0.0",
-  "description": "PDF Converter for papers written in Markdown",
+  "description": "Yet another MD document converter.",
   "main": "dist/index.js",
   "bin": {
     "mandoc": "./bin/mandoc",
@@ -41,6 +41,7 @@
     "errno": "^0.1.7",
     "highlight.js": "^9.12.0",
     "jquery": "^3.3.1",
+    "jsonlint": "^1.6.3",
     "keiyaku-css": "^1.1.0",
     "lodash": "^4.17.10",
     "mathjax": "^2.7.5",
