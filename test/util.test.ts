@@ -19,4 +19,8 @@ test('Basic urlFor cases', () => {
     })).toBe('https://cdnjs.cloudflare.com'
       + '/ajax/libs/mathjax/2.7.1/MathJax.js'
       + '?config=TeX-AMS_HTML&delayStartupUntil=configured');
+  expect(urlFor('bankai', {
+    baseDir: TEMPLATE_DIR,
+    rootDir: TEMPLATE_DIR,
+  })).toBe('/bankai');
 });

@@ -1,7 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as through from 'through2';
-import { renderHtml, renderMarkdown } from '../src/scripts/html.render';
+import { renderMarkdown } from '../src/scripts/html.render';
+import { readConfig as tplCfg } from '../src/scripts/template.config';
 import { Doc } from '../src/types';
 import { TEMPLATE_DIR } from './constants';
 
@@ -30,14 +31,16 @@ test('Basic RenderMarkdown', () => {
 
 test('Basic Template Rendering', done => {
   markdownStream(path.join(__dirname, './fixtures/ipsum.md'))
-    .pipe(renderHtml({
-      tplDir: path.join(TEMPLATE_DIR, 'default'),
-    })).pipe(through((chunk: Buffer, enc, cb) => {
-      expect(enc).toBe('buffer');
-      expect(chunk).toEqual(
-        fs.readFileSync(path.join(__dirname, './fixtures/ipsum-in-template.html')),
-      );
-      cb();
-      // fs.writeFileSync(path.join(__dirname, './fixtures/ipsum-in-template.html'), chunk);
-    }));
+    .pipe(
+      tplCfg(undefined, {
+        main: 'layout/template.njk',
+      }, path.join(TEMPLATE_DIR, 'default/mandoc.config.js')).renderers.njk.stream,
+  ).pipe(through((chunk: Buffer, enc, cb) => {
+    expect(enc).toBe('buffer');
+    expect(chunk).toEqual(
+      fs.readFileSync(path.join(__dirname, './fixtures/ipsum-in-template.html')),
+    );
+    cb();
+    // fs.writeFileSync(path.join(__dirname, './fixtures/ipsum-in-template.html'), chunk);
+  }));
 });
