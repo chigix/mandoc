@@ -46,7 +46,10 @@
         "parameters",
         "statements"
       ],
-      "max-line-length": [true, 100],
+      "max-line-length": [true, {
+        "limit": 100,
+        "ignore-pattern": "^import | http(s?)://"
+      }],
       "no-inferrable-types": true,
       "class-name": true,
       "comment-format": [
