@@ -42,3 +42,15 @@ export function jsonlintErrCatch(input: string) {
     return error.stack;
   }
 }
+
+/**
+ * Learned from
+ * https://github.com/hexojs/hexo/commit/2ad42b3501554ce48401c09ee3b4158d4b6e38f7#diff-5b9787c2de58e4aa04138e83d461159eL20
+ *
+ * @param file
+ */
+export function extName(file: string) {
+  const extname = path.extname(file);
+
+  return extname[0] === '.' ? extname.slice(1) : extname;
+}
