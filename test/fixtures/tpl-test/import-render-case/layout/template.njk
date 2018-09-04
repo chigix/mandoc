@@ -6,7 +6,6 @@
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    {% include "style.css" %}
     {% for style in styleIncludes if styleIncludes else [] %}
     {% include style %}
     {% endfor %}

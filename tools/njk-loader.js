@@ -16,18 +16,20 @@ module.exports = {
             }
         },
         getSource: function (name, callback) {
-            let full_path = null;
             const paths = this.searchPaths;
-
-            for (let i = 0; i < paths.length; i++) {
-                const basePath = path.resolve(paths[i]);
-                const p = path.resolve(paths[i], name); // Only allow the current directory and anything
-                // underneath it to be searched
-                if (p.indexOf(basePath) === 0 && fs.existsSync(p)) {
-                    full_path = p;
-                    break;
+            const full_path = (function () {
+                if (path.isAbsolute(name) && fs.existsSync(name)) {
+                    return name;
                 }
-            }
+                for (let i = 0; i < paths.length; i++) {
+                    const basePath = path.resolve(paths[i]);
+                    const p = path.resolve(paths[i], name); // Only allow the current directory and anything
+                    // underneath it to be searched
+                    if (p.indexOf(basePath) === 0 && fs.existsSync(p)) {
+                        return p;
+                    }
+                }
+            })();
 
             if (!full_path) {
                 return callback(null, null);
