@@ -1,137 +1,31 @@
 {
-    // Consider using no-identical-functions and disabling in faulty tests
-    // Consider using cognitive-complexity and refactor
-    // Consider using no-useless-cast but it's annoying
-    "extends": [
-      "tslint-no-circular-imports"
-    ],
-    "rulesDirectory": [
-      "node_modules/tslint-sonarts/lib/rules"
-    ],
-    "rules": {
-      // ==============================================================
-      // tslint-sonarts rules. See https://github.com/SonarSource/SonarTS
-      // These rules are part of the bug detection section of tslint-sonarts
-      "no-big-function": true,
-      "no-all-duplicated-branches": true,
-      "no-case-with-or": true,
-      "no-collection-size-mischeck": true,
-      "no-element-overwrite": true,
-      "no-empty-destructuring": true,
-      "no-identical-conditions": true,
-      "no-ignored-initial-value": true,
-      "no-ignored-return": true,
-      "no-in-misuse": true,
-      "no-misleading-array-reverse": true,
-      "no-misspelled-operator": true,
-      "no-self-assignment": true,
-      "no-unthrown-error": true,
-      "no-use-of-empty-return-value": true,
-      "no-useless-increment": true,
-
-      // These rules are part of the code smell detection section of tslint-sonarts
-      "no-dead-store": true,
-      "no-useless-intersection": true,
-      // ==============================================================
-      
-      // ==============================================================
-      // base tslint rules
-      "no-floating-promises": true,
-      "no-implicit-dependencies": true,
-      "no-import-side-effect": [true, {"ignore-module": "^(?!rxjs\/)"}],
-      "align": [
-        true,
-        "elements",
-        "members",
-        "parameters",
-        "statements"
-      ],
-      "max-line-length": [true, {
-        "limit": 100,
-        "ignore-pattern": "^import | http(s?)://"
-      }],
-      "no-inferrable-types": true,
-      "class-name": true,
-      "comment-format": [
-        true,
-        "check-space"
-      ],
-      "indent": [
-        true,
-        "spaces"
-      ],
-      "eofline": true,
-      "import-spacing": true,
-      "match-default-export-name": true,
-      "newline-before-return": true,
-      "no-consecutive-blank-lines": [true, 2],
-      "no-duplicate-variable": true,
-      "no-eval": true,
-      "no-any": true,
-      "no-arg": true,
-      "no-internal-module": true,
-      "no-trailing-whitespace": true,
-      "no-unused-expression": true,
-      "no-unused-variable": [true, {"ignore-pattern": "^_"}],
-      "no-var-keyword": true,
-      "one-line": [
-        true,
-        "check-catch",
-        "check-else",
-        "check-finally",
-        "check-open-brace",
-        "check-whitespace"
-      ],
-      "ordered-imports": [
-        true,
-        {
-          "import-sources-order": "lowercase-last",
-          "named-imports-order": "lowercase-last"
-        }
-      ],
-      "prefer-const": true,
-      "quotemark": [
-        true,
-        "single",
-        "avoid-escape"
-      ],
-      "semicolon": [true, "always"],
-      "trailing-comma": [
-        true,
-        {
-          "multiline": "always",
-          "singleline": "never"
-        }
-      ],
-      "typedef-whitespace": [
-        true,
-        {
-          "call-signature": "nospace",
-          "index-signature": "nospace",
-          "parameter": "nospace",
-          "property-declaration": "nospace",
-          "variable-declaration": "nospace"
-        }
-      ],
-      "curly": true,
-      "variable-name": [
-        true,
-        "ban-keywords",
-        "check-format",
-        "allow-leading-underscore",
-        "allow-pascal-case",
-        "allow-snake-case"
-      ],
-      "whitespace": [
-        true,
-        "check-branch",
-        "check-decl",
-        "check-module",
-        "check-preblock",
-        "check-operator",
-        "check-separator",
-        "check-type",
-        "check-typecast"
-      ]
-    }
+  // Consider using no-identical-functions and disabling in faulty tests
+  // Consider using cognitive-complexity and refactor
+  // Consider using no-useless-cast but it's annoying
+  "extends": [
+    "tslint-no-circular-imports",
+    "./tslint.base.json"
+  ],
+  "rules": {
+    // ==============================================================
+    // tslint-sonarts rules. See https://github.com/SonarSource/SonarTS
+    // These rules are part of the bug detection section of tslint-sonarts
+    "no-collection-size-mischeck": true,
+    "no-element-overwrite": true,
+    "no-ignored-initial-value": true,
+    "no-ignored-return": true,
+    "no-in-misuse": true,
+    "no-misleading-array-reverse": true,
+    "no-self-assignment": true,
+    "no-use-of-empty-return-value": true,
+    // These rules are part of the code smell detection section of tslint-sonarts
+    "no-dead-store": true,
+    "no-useless-intersection": true,
+    // ==============================================================
+    // ==============================================================
+    // base tslint rules
+    "no-implicit-dependencies": true,
+    "no-floating-promises": true,
+    "match-default-export-name": true
   }
+}

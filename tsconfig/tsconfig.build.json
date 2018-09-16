@@ -1,0 +1,26 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "mandoc": [
+                "../src/index"
+            ],
+            "mandoc/*": [
+                "../src/*"
+            ],
+            "mandoc-test": [
+                "../test"
+            ],
+            "mandoc-test/*": [
+                "../test/*"
+            ],
+            "mandoc-tpl/*": [
+                "../templates/*"
+            ]
+        }
+    },
+    "include": [
+        "../build/pkg-src",
+    ],
+}

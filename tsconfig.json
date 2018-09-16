@@ -1,25 +1,36 @@
 {
+    "extends": "./tsconfig/tsconfig.base.json",
     "compilerOptions": {
-        "declaration": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "alwaysStrict": true,
-        "strict": true,
+        "types": [
+            "node",
+            "jest",
+        ],
         "lib": [
-            "es6",
+            "es2017",
             "dom",
         ],
-        "module": "commonjs",
-        "noImplicitReturns": true,
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "target": "es6"
+        "baseUrl": ".",
+        "paths": {
+            "mandoc": [
+                "./src/index"
+            ],
+            "mandoc/*": [
+                "./src/*"
+            ],
+            "mandoc-test": [
+                "./test"
+            ],
+            "mandoc-test/*": [
+                "./test/*"
+            ],
+            "mandoc-tpl/*": [
+                "./templates/*"
+            ]
+        }
     },
-    "compileOnSave": true,
     "include": [
-        "src"
+        "src",
+        "build",
+        "test"
     ],
-    "exclude": [
-        "node_modules",
-    ]
 }
