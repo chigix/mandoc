@@ -66,3 +66,9 @@ export enum OutputBuild {
   Site,
   Webpack,
 }
+
+export interface SiteBuildContext {
+  rootDir: string;
+  index: string;
+  cleanupCallback: () => void;
+}
