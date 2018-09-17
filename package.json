@@ -13,9 +13,9 @@
     "build-clean": "shx rm -r ./dist",
     "build-package": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./build/make-packages.ts",
     "build-source-map-clean": "ts-node ./build/make-clean-source-map.ts",
+    "build-tpls": "ts-node ./build/make-templates.ts",
     "tsc-build": "tsc -p tsconfig/tsconfig.base.json && tsc -p tsconfig/tsconfig.build.json",
-    "tsc-lint": "tslint -c tslint.json --project tsconfig/tsconfig.base.json \"src/**/*.ts\"",
-    "tpls-build": "ts-node ./build/templates.ts"
+    "tsc-lint": "tslint -c tslint.json --project tsconfig/tsconfig.base.json \"src/**/*.ts\""
   },
   "repository": {
     "type": "git",

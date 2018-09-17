@@ -74,4 +74,5 @@ function adjustToTerminalWidth(str: string) {
     .forEach(file => sh.cp(
       file, path.resolve(PKG_ROOT, path.relative(SRC_ROOT, file)),
     ));
+  sh.cp(path.resolve(__dirname, '../LICENSE'), path.resolve(PKG_ROOT, './'));
 })();
