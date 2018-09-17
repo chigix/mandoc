@@ -10,6 +10,7 @@ const OK = chalk.reset.inverse.bold.green(' DONE ');
 const pkg_json_path = path.resolve(__dirname, '../package.json');
 
 const PKG_ROOT = path.resolve(__dirname, '../dist');
+const SRC_ROOT = path.resolve(__dirname, '../src');
 const BIN_PKG = path.join(PKG_ROOT, './bin');
 
 if (!fs.existsSync(PKG_ROOT)) {
@@ -68,4 +69,9 @@ function adjustToTerminalWidth(str: string) {
   sh.find(path.join(PKG_ROOT, './bin'))
     .filter(file => file.match(/\.js$/))
     .forEach(file => sh.mv(file, file.slice(0, - 3)));
+  sh.find(SRC_ROOT)
+    .filter(file => file.match(/\.js$/))
+    .forEach(file => sh.cp(
+      file, path.resolve(PKG_ROOT, path.relative(SRC_ROOT, file)),
+    ));
 })();
