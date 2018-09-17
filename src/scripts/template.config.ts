@@ -3,10 +3,17 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
-import * as CONST from '../lib/constants';
+import { CmdMandocOptions, TemplateConfiguration } from '../interfaces';
 import { isFile, jsonlintErrCatch } from '../lib/util';
-import { ConvertCommandOptions, TemplateConfiguration } from '../types';
-import { renderMarkdown } from './html.render';
+import {
+  PACKAGE_JSON,
+  TEMPLATE_DIR,
+  TPL_CFG_MAIN_FILE,
+  TPL_CFG_PATH,
+  TPL_CFG_SOURCE,
+  TPL_DEFAULT_ROOT,
+} from '../paths.const';
+import { renderMarkdown } from './md2html.stream';
 import { NJK_STREAM_FACTORY } from './template.stream';
 const requireg = require('requireg');
 
@@ -48,9 +55,9 @@ function configToContext(
   // @TODO: Validate configuration.
   const tpl_ctx = _.assign({
     rootDir: path.dirname(opts.configFile),
-    main: CONST.TPL_HTML_PATH,
-    cssBaseDir: CONST.TPL_SRC_PATH,
-    jsBaseDir: CONST.TPL_SRC_PATH,
+    main: TPL_CFG_MAIN_FILE,
+    cssBaseDir: TPL_CFG_SOURCE,
+    jsBaseDir: TPL_CFG_SOURCE,
   } as Context, configuration);
 
   const register: RegisterExtensionContext = {
@@ -100,12 +107,12 @@ function configToContext(
 function resolveConfigPathByTraversing(
   pathToResolve: string, initialPath: string, cwd: string)
   : string {
-  const js_config = path.resolve(pathToResolve, CONST.TEMPLATE_CONFIG);
+  const js_config = path.resolve(pathToResolve, TPL_CFG_PATH);
   if (isFile(js_config)) {
     return js_config;
   }
 
-  const package_json = path.resolve(pathToResolve, CONST.PACKAGE_JSON);
+  const package_json = path.resolve(pathToResolve, PACKAGE_JSON);
   if (isFile(package_json)) {
     return package_json;
   }
@@ -117,8 +124,8 @@ function resolveConfigPathByTraversing(
         `cwd: "${cwd}"\n` +
         'Config paths must be specified by either a direct path to a config\n' +
         'file, or a path to a directory. If directory is given, Mandoc will try to\n' +
-        `traverse directory tree up, until it finds either "${CONST.TEMPLATE_CONFIG}" or\n` +
-        `"${CONST.PACKAGE_JSON}".`);
+        `traverse directory tree up, until it finds either "${TPL_CFG_PATH}" or\n` +
+        `"${PACKAGE_JSON}".`);
     }
   })();
 
@@ -165,7 +172,7 @@ function readConfigFile(configPath: string): TemplateConfiguration {
     }
   }
 
-  if (configPath.endsWith(CONST.PACKAGE_JSON)) {
+  if (configPath.endsWith(PACKAGE_JSON)) {
     configObject = configObject || {};
   }
 
@@ -177,12 +184,15 @@ function readConfigFile(configPath: string): TemplateConfiguration {
  *
  * https://github.com/facebook/jest/blob/master/packages/jest-config/src/index.js
  *
+ * @TODO: refine the options needed here much more specifically instead of
+ * using the whole cmdOpts directly.
+ *
  * @param cmdOpts options set object from commander
  * @param templatePackageRoot base directory path of the target template.
  * @param parentConfigPath Configuration file path.
  */
 export function readConfig(
-  cmdOpts?: ConvertCommandOptions,
+  cmdOpts?: CmdMandocOptions,
   templateConfig?: TemplateConfiguration,
   parentConfigPath?: string,
 ): Context {
@@ -216,7 +226,7 @@ export function readConfig(
       }
     }
     if (!config_path) {
-      config_path = path.resolve(CONST.TEMPLATE_DIR, cmdOpts.template);
+      config_path = path.resolve(TEMPLATE_DIR, cmdOpts.template);
       if (!fs.existsSync(config_path)) {
         config_path = cmdOpts.template;
       }
@@ -226,7 +236,7 @@ export function readConfig(
     config_path = resolveConfigPath(config_path, process.cwd());
     raw_options = readConfigFile(config_path);
   } else {
-    config_path = resolveConfigPath(CONST.TPL_DEFAULT_DIR, CONST.TEMPLATE_DIR);
+    config_path = resolveConfigPath(TPL_DEFAULT_ROOT, TEMPLATE_DIR);
     raw_options = readConfigFile(config_path);
   }
 
@@ -235,6 +245,6 @@ export function readConfig(
   });
 }
 
-export function getConfig(cmdOpts: ConvertCommandOptions): Context {
+export function getConfig(cmdOpts: CmdMandocOptions): Context {
   return readConfig(cmdOpts);
 }

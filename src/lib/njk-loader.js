@@ -36,6 +36,10 @@ module.exports = {
             }
             this.pathsToNames[full_path] = name;
 
+            // By default, less files would be compiled
+            // An exclusion configuration file is current considered
+            // as a future implementation.
+
             callback(null, {
                 src: fs.readFileSync(full_path, 'utf-8'),
                 path: full_path,

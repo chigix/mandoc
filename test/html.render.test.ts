@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { Doc } from 'mandoc/interfaces';
 import { TEMPLATE_DIR } from 'mandoc/paths.const';
-import { renderMarkdown } from 'mandoc/scripts/markdown-render.stream';
+import { renderMarkdown } from 'mandoc/scripts/md2html.stream';
 import { readConfig as tplCfg } from 'mandoc/scripts/template.config';
 import * as path from 'path';
 import * as through from 'through2';

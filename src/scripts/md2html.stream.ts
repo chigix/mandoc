@@ -3,9 +3,7 @@ import * as hljs from 'highlight.js';
 import * as Remarkable from 'remarkable';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { Doc } from '../types';
-const errno = require('errno');
-const slash = require('slash');
+import { Doc } from '../interfaces';
 
 function createMarkdownParser() {
   return new Remarkable({

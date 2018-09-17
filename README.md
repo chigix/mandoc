@@ -24,3 +24,4 @@ This project is inspired by
   barrier that need to spend time for inspecting and learning.
 * RXJS commit message guideline
   https://github.com/ReactiveX/rxjs/blob/master/CONTRIBUTING.md#commit-message-guidelines
+* Default Slide Template Support Plan

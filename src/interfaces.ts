@@ -1,5 +1,4 @@
 import * as stream from 'stream';
-import { DEFAULT_CONVERTER_OPTS } from './commanders';
 
 export interface Doc {
   title: string;
@@ -13,7 +12,23 @@ export interface Doc {
   bibliography?: {}[];
 }
 
-export type ConvertCommandOptions = typeof DEFAULT_CONVERTER_OPTS;
+export interface Style {
+  text: string;
+  paths: string;
+  filename: string;
+  compress: false;
+}
+
+/**
+ * @TODO: split Mandoc Options into a group of options interfaces union.
+ */
+export interface CmdMandocOptions {
+  template: string;
+  tableOfContents: boolean;
+  output: string;
+  watch: boolean;
+  build: OutputBuild;
+}
 
 export interface TemplateConfiguration {
   /**
@@ -40,8 +55,14 @@ export interface TemplateConfiguration {
     (name: string, output: string, processStream: stream.Transform) => void,
     // tplCtx: Context // Plan in the future for support getting mandoc context
     //                    in processStream.
-  ) => never;
+  ) => void;
   helper?: (register:
     (name: string, fn: (...args: (string | Object)[]) => string) => void,
-  ) => never;
+  ) => void;
+}
+
+export enum OutputBuild {
+  StandaloneFile,
+  Site,
+  Webpack,
 }

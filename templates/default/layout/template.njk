@@ -6,9 +6,10 @@
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        {% include "../source/style.css" %}
+        {% include normalizeCSS %}
+        {% include "style.css" %}
     </style>
-    {{ css('./style') }}
+    <link rel="stylesheet" href="file:///{{ highlightJs }}">
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
@@ -23,7 +24,6 @@
     </div>
     <script>
     </script>
-    {{ js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured') }}
-    {{ js('./main') }}
+    <script type="text/javascript" src="file:///{{ mathjax }}?config=TeX-AMS_HTML-full"></script>
 </body>
 </html>
