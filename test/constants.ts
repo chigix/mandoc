@@ -1,7 +1,6 @@
 import * as path from 'path';
 
-export const TEMPLATE_DIR = path.join(__dirname, '../templates');
-export const TEST_TEMPLATE_DIR = path.join(__dirname, './fixtures/tpl-test');
-export const RENDER_CASE_DIR = path.join(__dirname, './fixtures/tpl-render-result');
-export const TEST_DIR = __dirname;
-export const FIXTURES_DIR = path.join(__dirname, './fixtures');
+export const TEST_ROOT = __dirname;
+export const TEST_FIXTURE = path.join(TEST_ROOT, './fixtures');
+export const TPL_TEST_FIXTURE = path.join(TEST_FIXTURE, './tpl-test');
+export const RENDER_CASE_FIXTURE = path.join(TEST_FIXTURE, './tpl-render-result');

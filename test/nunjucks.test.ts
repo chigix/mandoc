@@ -1,8 +1,11 @@
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
-import * as CONST from './constants';
-const NjkLoaders = require('../tools/njk-loader');
+import {
+  RENDER_CASE_FIXTURE,
+  TPL_TEST_FIXTURE,
+} from './constants';
+const NjkLoaders = require('mandoc/lib/njk-loader');
 
 function getNJKEnv(tplDir: string | string[]) {
   return new nunjucks.Environment(
@@ -10,7 +13,7 @@ function getNJKEnv(tplDir: string | string[]) {
 }
 
 test('TemplateLoader Basic Usage', done => {
-  getNJKEnv(path.join(CONST.TEST_TEMPLATE_DIR, './basic-render-case'))
+  getNJKEnv(path.join(TPL_TEST_FIXTURE, './basic-render-case'))
     .render('layout/template.njk', {
       title: '逃げる',
       body: '逃げちゃだめだ。逃げちゃだめだ。逃げちゃだめだ。',
@@ -21,7 +24,7 @@ test('TemplateLoader Basic Usage', done => {
       }
       expect(result).toEqual(
         fs.readFileSync(
-          path.resolve(CONST.RENDER_CASE_DIR, './basic-render-nigeru.html'),
+          path.resolve(RENDER_CASE_FIXTURE, './basic-render-nigeru.html'),
           'utf8'));
 
       return done();
@@ -30,8 +33,8 @@ test('TemplateLoader Basic Usage', done => {
 
 test('Basic External Source Import Testing', done => {
   getNJKEnv([
-    path.join(CONST.TEST_TEMPLATE_DIR, './import-render-case'),
-    path.join(CONST.TEST_TEMPLATE_DIR, './import-render-case/source'),
+    path.join(TPL_TEST_FIXTURE, './import-render-case'),
+    path.join(TPL_TEST_FIXTURE, './import-render-case/source'),
   ]).render('layout/template.njk', {
     title: '逃げる',
     body: '逃げちゃだめだ。逃げちゃだめだ。逃げちゃだめだ。',
@@ -42,7 +45,7 @@ test('Basic External Source Import Testing', done => {
     expect(err).toBeNull();
     expect(result).toEqual(
       fs.readFileSync(
-        path.resolve(CONST.RENDER_CASE_DIR, './import-render-nigeru.html')
+        path.resolve(RENDER_CASE_FIXTURE, './import-render-nigeru.html')
         , 'utf8'));
 
     return done();
@@ -51,7 +54,7 @@ test('Basic External Source Import Testing', done => {
 
 test('Import Normalize Css', done => {
   getNJKEnv([
-    path.join(CONST.TEST_TEMPLATE_DIR, './import-render-case'),
+    path.join(TPL_TEST_FIXTURE, './import-render-case'),
   ]).render('layout/template.njk', {
     title: '守る',
     body: 'あなたは死なないわ。私が守るもの',

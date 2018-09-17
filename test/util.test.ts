@@ -1,6 +1,6 @@
+import { urlFor } from 'mandoc/lib/util';
+import { TEMPLATE_DIR } from 'mandoc/paths.const';
 import * as path from 'path';
-import { urlFor } from '../src/lib/util';
-import { TEMPLATE_DIR } from './constants';
 
 test('Basic urlFor cases', () => {
   expect(urlFor('/main.js', {
