@@ -75,4 +75,5 @@ function adjustToTerminalWidth(str: string) {
       file, path.resolve(PKG_ROOT, path.relative(SRC_ROOT, file)),
     ));
   sh.cp(path.resolve(__dirname, '../LICENSE'), path.resolve(PKG_ROOT, './'));
+  sh.cp(path.resolve(__dirname, '../README.md'), path.resolve(PKG_ROOT, './'));
 })();

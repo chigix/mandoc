@@ -1,6 +1,12 @@
 # ManDoc
 
+[![NPM version](https://badge.fury.io/js/mandoc.svg)](http://badge.fury.io/js/mandoc)
+[![dependencies Status](https://david-dm.org/chigix/mandoc/status.svg)](https://david-dm.org/chigix/mandoc)
+[![devDependencies Status](https://david-dm.org/chigix/mandoc/dev-status.svg)](https://david-dm.org/chigix/mandoc?type=dev)
+
 Your swiss-army knife to convert documents in Markdown to PDF or HTML.
+
+## Features
 
 This project is inspired by
 
@@ -8,6 +14,46 @@ This project is inspired by
 * [pandoc](https://pandoc.org/)
 * [DeckTape](https://github.com/astefanutti/decktape)
 * [Hexo](https://hexo.io/)
+
+## Installation
+
+```bash
+$ npm install mandoc -g
+```
+
+Executable Package Release is also in plan for Windows Users.
+
+Docker Image provide is also in plan for Docker Users.
+
+## Quick Start
+
+Convert your markdown into PDF through *Mandoc*
+
+```bash
+$ mandoc path/to/your/doc.md
+$ open path/to/your/doc.pdf
+```
+
+Convert a markdown bytes stream to PDF
+
+```bash
+$ curl https://raw.githubusercontent.com/chigix/mandoc/master/README.md | mandoc -o ./r.pdf
+```
+
+With Template to build for different situation from your original markdown
+
+```bash
+$ mandoc --template path/to/template_dir path/to/your/doc.md
+```
+
+Template in mandoc is similar to the concept of theme in building a web site.
+However mandoc is designed for converting your original markdown document into
+different shape of files for different situation and needs, which is mostly
+outputted to a single file as the final result for future usage.
+
+About the template package, mandoc is designed to support npm packaged template
+release as well, which means that you can share or download other designers'
+template work through `npm install -g tpl_name` simply.
 
 ## To Try
 
@@ -25,3 +71,7 @@ This project is inspired by
 * RXJS commit message guideline
   https://github.com/ReactiveX/rxjs/blob/master/CONTRIBUTING.md#commit-message-guidelines
 * Default Slide Template Support Plan
+
+## License
+
+MIT

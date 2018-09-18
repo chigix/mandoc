@@ -55,7 +55,7 @@
     "phantom": "^6.0.3",
     "phantomjs-prebuilt": "^2.1.16",
     "remarkable": "^1.7.1",
-    "requireg": "^0.1.8",
+    "requireg": "^0.2.1",
     "rxjs": "^6.2.2",
     "slash": "^2.0.0",
     "through2": "^2.0.3",
