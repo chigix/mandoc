@@ -1,6 +1,14 @@
-import {
-  LESS_STREAM_FACTORY,
-  NJK_STREAM_FACTORY,
+export {
+  LESS_STREAM_FACTORY as createLessCompileStream,
+  NJK_STREAM_FACTORY as createNunjucksCompileStream,
 } from './scripts/template.stream';
 
-export const streams = { LESS_STREAM_FACTORY, NJK_STREAM_FACTORY };
+export {
+  TPL_CFG_FILE_PATH,
+} from './paths.const';
+
+export {
+  Doc as DocumentDescriptor,
+  OutputBuild as OutputResultType,
+  Path,
+} from './interfaces';

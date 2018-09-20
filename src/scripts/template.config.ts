@@ -3,15 +3,15 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { CmdMandocOptions, TemplateConfiguration } from '../interfaces';
+import { CmdMandocOptionsTplConf, TemplateConfiguration } from '../interfaces';
 import { isFile, jsonlintErrCatch } from '../lib/util';
 import {
   PACKAGE_JSON,
   TEMPLATE_DIR,
-  TPL_CFG_MAIN_FILE,
-  TPL_CFG_PATH,
-  TPL_CFG_SOURCE,
+  TPL_CFG_FILE_PATH,
+  TPL_DEFAULT_LAYOUT_FILE,
   TPL_DEFAULT_ROOT,
+  TPL_DEFAULT_SRC_DIR,
 } from '../paths.const';
 import { renderMarkdown } from './md2html.stream';
 import { NJK_STREAM_FACTORY } from './template.stream';
@@ -52,12 +52,12 @@ function configToContext(
   configuration: TemplateConfiguration, opts: {
     configFile: string,
   }): Context {
-  // @TODO: Validate configuration.
+  // TODO: Validate configuration.
   const tpl_ctx = _.assign({
     rootDir: path.dirname(opts.configFile),
-    main: TPL_CFG_MAIN_FILE,
-    cssBaseDir: TPL_CFG_SOURCE,
-    jsBaseDir: TPL_CFG_SOURCE,
+    main: TPL_DEFAULT_LAYOUT_FILE,
+    cssBaseDir: TPL_DEFAULT_SRC_DIR,
+    jsBaseDir: TPL_DEFAULT_SRC_DIR,
   } as Context, configuration);
 
   const register: RegisterExtensionContext = {
@@ -107,7 +107,7 @@ function configToContext(
 function resolveConfigPathByTraversing(
   pathToResolve: string, initialPath: string, cwd: string)
   : string {
-  const js_config = path.resolve(pathToResolve, TPL_CFG_PATH);
+  const js_config = path.resolve(pathToResolve, TPL_CFG_FILE_PATH);
   if (isFile(js_config)) {
     return js_config;
   }
@@ -124,7 +124,7 @@ function resolveConfigPathByTraversing(
         `cwd: "${cwd}"\n` +
         'Config paths must be specified by either a direct path to a config\n' +
         'file, or a path to a directory. If directory is given, Mandoc will try to\n' +
-        `traverse directory tree up, until it finds either "${TPL_CFG_PATH}" or\n` +
+        `traverse directory tree up, until it finds either "${TPL_CFG_FILE_PATH}" or\n` +
         `"${PACKAGE_JSON}".`);
     }
   })();
@@ -184,7 +184,7 @@ function readConfigFile(configPath: string): TemplateConfiguration {
  *
  * https://github.com/facebook/jest/blob/master/packages/jest-config/src/index.js
  *
- * @TODO: refine the options needed here much more specifically instead of
+ * TODO refine the options needed here much more specifically instead of
  * using the whole cmdOpts directly.
  *
  * @param cmdOpts options set object from commander
@@ -192,7 +192,7 @@ function readConfigFile(configPath: string): TemplateConfiguration {
  * @param parentConfigPath Configuration file path.
  */
 export function readConfig(
-  cmdOpts?: CmdMandocOptions,
+  cmdOpts?: CmdMandocOptionsTplConf,
   templateConfig?: TemplateConfiguration,
   parentConfigPath?: string,
 ): Context {
@@ -245,6 +245,13 @@ export function readConfig(
   });
 }
 
-export function getConfig(cmdOpts: CmdMandocOptions): Context {
-  return readConfig(cmdOpts);
+/**
+ * TODO improve argument usage on readConfig
+ *
+ * @param template_name Template Package name or the path to the template directory.
+ */
+export function getConfig(template_name: string): Context {
+  return readConfig({
+    template: template_name,
+  });
 }

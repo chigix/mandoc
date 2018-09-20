@@ -5,9 +5,6 @@ import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
 import { Doc, Style } from '../interfaces';
-import {
-  TPL_CFG_MAIN_FILE,
-} from '../paths.const';
 import { Context, RegisterExtensionContext } from './template.config';
 import { CSS_HELPER_FACTORY, JS_HELPER_FACTORY } from './template.helper';
 const nunjucks_runtime = require('nunjucks').runtime;

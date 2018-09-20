@@ -1,5 +1,16 @@
 import * as stream from 'stream';
 
+export type Path = string;
+export type Glob = string;
+
+/** Descriptor Interface */
+
+/**
+ * Abstract Descriptor for inputted document source,
+ * mostly to be converted or parsed in later processes.
+ *
+ * TODO: rename to `DocumentDescriptor`
+ */
 export interface Doc {
   title: string;
   author?: {
@@ -12,22 +23,46 @@ export interface Doc {
   bibliography?: {}[];
 }
 
+/**
+ * Designed for Compiling LESS/SASS source files.
+ *
+ * TODO: still necessary? or remove later?
+ */
 export interface Style {
   text: string;
-  paths: string;
+  paths: Path[];
   filename: string;
   compress: false;
 }
 
+/** Configuration Interface */
+
+export interface CmdMandocOptions
+  extends CmdMandocOptionsTplConf {
+  from: 'markdown' | string;
+  to: 'pdf' | string;
 /**
- * @TODO: split Mandoc Options into a group of options interfaces union.
+   * Whether to show tableOfContents in Document Compiling.
+   *
+   * @type {boolean}
+   * @memberof CmdMandocOptions
  */
-export interface CmdMandocOptions {
-  template: string;
   tableOfContents: boolean;
-  output: string;
+  output: Path;
   watch: boolean;
+  // TODO: with writingFormat instead
   build: OutputBuild;
+}
+
+export interface CmdMandocOptionsTplConf {
+  /**
+   * @type {string}
+   * @memberof CmdMandocOptionsTplConf
+   *
+   * - Template name
+   * - path to the template directory
+   */
+  template: string;
 }
 
 export interface TemplateConfiguration {
@@ -35,7 +70,7 @@ export interface TemplateConfiguration {
    * The primary entry point to the template usage.
    * `layout/template.njk` is default.
    */
-  main: string;
+  main: Path;
 
   /**
    * The primary directory where styles files are stored.
@@ -43,14 +78,14 @@ export interface TemplateConfiguration {
    *
    * `source/` directory is default.
    */
-  cssBaseDir?: string;
+  cssBaseDir?: Path;
 
   /**
    * The primary directory where javascript script files are stored.
    *
    * `source/` directory is default.
    */
-  jsBaseDir?: string;
+  jsBaseDir?: Path;
   renderer?: (register:
     (name: string, output: string, processStream: stream.Transform) => void,
     // tplCtx: Context // Plan in the future for support getting mandoc context
@@ -61,14 +96,18 @@ export interface TemplateConfiguration {
   ) => void;
 }
 
+/** Preset Enums */
+
 export enum OutputBuild {
   StandaloneFile,
   Site,
   Webpack,
 }
 
+/** Context Interface */
+
 export interface SiteBuildContext {
-  rootDir: string;
+  rootDir: Path;
   index: string;
   cleanupCallback: () => void;
 }

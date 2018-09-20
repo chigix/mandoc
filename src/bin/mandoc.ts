@@ -7,7 +7,8 @@ import _ = require('lodash');
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { CmdMandocOptions, OutputBuild } from '../interfaces';
+import { CmdMandocOptions, OutputBuild, Path } from '../interfaces';
+import { DocumentNotFoundError } from '../lib/errors';
 import { extName } from '../lib/util';
 import { PKG_ROOT } from '../paths.const';
 import SiteWrapper from '../scripts/html2site.stream';
@@ -25,6 +26,7 @@ program.version(pkg_json.version, '-v, --version')
   .option('-o, --output [FILE]', 'Write output to FILE instead of stdout')
   .option('-w, --watch', 'Watch file for changes and rewrite')
   .option('-f, --from [FORMAT]', 'Specify input format. Markdown Default')
+  .option('-t, --to [FORMAT]', 'Specify output format. PDF Default')
   .option('--template [NAME|DIR]',
     'Use a template instead of the default for the generated document')
   .option('--toc, --table-of-contents', 'non-null value if specified')
@@ -37,47 +39,86 @@ program.version(pkg_json.version, '-v, --version')
   // command.option('--self-contained',
   //   'Produce a standalone HTML file with no external dependencies');
   .option('--verbose', 'Give verbose debugging output')
-  .action((file: string, cmd: { [key: string]: string }) => {
-    try {
-      if (!fs.lstatSync(file).isFile()) {
-        throw 'Markdown Source File is not existed.';
-      }
-    } catch (error) {
-      if (error.code === 'ENOENT') {
-        process.stderr.write(
-          chalk.redBright('No such file or directory : ' + error.path || file));
-
-        return;
-      }
-      throw error;
+  .action(async (
+    file: Path | null,
+    cmd: { [key: string]: string },
+  ) => {
+    if (!_.isString(file)) {
+      cmd = file || {};
+      file = null;
     }
-    const options = _.assign({
-      template: 'default',
-      tableOfContents: false,
-      output: file.replace(/\.m(ark)?d(own)?/gi, '') + '.pdf',
-      watch: false,
-      build: OutputBuild.StandaloneFile,
-    } as CmdMandocOptions, cmd);
+    if (_.isString(cmd)) {
+      throw `Unable to recognize '${cmd}'`;
+    }
 
-    const tpl_cfg = templateConfigure(options);
+    const options = (function validateAndFixOptions() {
+      const ext_name = _.isNull(file) ? '.md' : path.extname(file);
+      const result = _.assign({
+        from: ext_name.substring(1),
+        to: 'pdf',
+        template: 'default',
+        tableOfContents: false,
+        output: _.isString(file) ?
+          file.substring(0, file.length - ext_name.length) + '.pdf' :
+          null,
+        watch: false,
+        build: OutputBuild.StandaloneFile,
+      } as CmdMandocOptions, cmd);
+      if (!_.isString(result.output)) {
+        process.stderr.write(chalk.redBright('Please provide output path'));
+        process.exit(1);
+      }
 
-    fs.createReadStream(
-      file,
-      { autoClose: true },
-    ).pipe(
+      return result;
+    })();
+
+    const start_stream = await new Promise<NodeJS.ReadableStream>(
+      (resolve, reject) => {
+        if (_.isNull(file)) {
+          return resolve(process.stdin);
+        }
+        const file_path = file;
+        fs.lstat(file_path, (err, stats) => {
+          if (err) {
+            return reject(err);
+          }
+          if (!stats.isFile()) {
+            return reject(new DocumentNotFoundError(
+              `Markdown Source File is not existed: ${file}`));
+          }
+
+          return resolve(fs.createReadStream(file_path));
+        });
+      }).catch((err) => {
+        if (err.errno && err.code === 'ENOENT') {
+          chalk.redBright('No such file or directory : ' + file);
+        } else if (err instanceof DocumentNotFoundError) {
+          chalk.redBright('No such file or directory : ' + file);
+        } else {
+          throw err;
+        }
+      });
+
+    if (!start_stream) {
+      return;
+    }
+
+    const tpl_cfg = templateConfigure(options.template);
+
+    start_stream.pipe(
       (
         ({
           'md': () => renderMarkdown({
-            baseDir: path.dirname(file),
+            baseDir: file ? path.dirname(file) : process.cwd(),
           }),
           'markdown': () => renderMarkdown({
-            baseDir: path.dirname(file),
+            baseDir: file ? path.dirname(file) : process.cwd(),
           }),
-          // @TODO: Tex Support here
+          // TODO: Tex Support here
         } as {
             [key: string]: (() => stream.Transform) | undefined,
           }
-        )[extName(file)] || (() => through())
+        )[options.from] || (() => through())
       )(),
     ).pipe(
       (function tplStream() {

@@ -3,8 +3,11 @@ import * as hljs from 'highlight.js';
 import * as Remarkable from 'remarkable';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { Doc } from '../interfaces';
+import { Doc, Path } from '../interfaces';
 
+/**
+ * TODO accept basedir option in the future to support including compiling
+ */
 function createMarkdownParser() {
   return new Remarkable({
     html: true,
@@ -39,7 +42,7 @@ function createMarkdownParser() {
  * @returns {stream.Transform}
  */
 export function renderMarkdown(ctx: {
-  baseDir: fs.PathLike,
+  baseDir: Path,
 }): stream.Transform {
   let md = '';
 
@@ -50,6 +53,8 @@ export function renderMarkdown(ctx: {
     this.push({
       title: 'Report',
       author: [],
+      // External Resources reference is a problem here
+      // @TODO: At least image paths could be collected through markdown parser
       body: createMarkdownParser().render(md),
     } as Doc);
     cb();

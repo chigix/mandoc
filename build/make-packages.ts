@@ -51,6 +51,7 @@ function adjustToTerminalWidth(str: string) {
   // https://github.com/ReactiveX/rxjs/blob/d5658fe68093861e0612be3c8c045f973168b87c/.make-packages.js#L45
   delete package_config.devDependencies;
   delete package_config.scripts;
+  delete package_config.private;
   fs.writeJsonSync(path.resolve(PKG_ROOT, './package.json'),
     _.assign({}, package_config, {
       name: 'mandoc',

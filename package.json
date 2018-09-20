@@ -1,6 +1,6 @@
 {
   "name": "mandoc-repository",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yet another MD document converter.",
   "main": "dist/index.js",
   "scripts": {
@@ -9,8 +9,8 @@
     "mandoc-gen": "ts-node  --project tsconfig/tsconfig.base.json ./src/bin/mandoc-gen.ts",
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "build": "npm-run-all --parallel tsc-build",
-    "build-clean": "shx rm -r ./dist",
+    "build": "npm-run-all build-clean tsc-build build-package build-tpls",
+    "build-clean": "shx rm -rf ./dist",
     "build-package": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./build/make-packages.ts",
     "build-source-map-clean": "ts-node ./build/make-clean-source-map.ts",
     "build-tpls": "ts-node ./build/make-templates.ts",
@@ -38,6 +38,7 @@
   "bugs": {
     "url": "https://github.com/chigix/mandoc/issues"
   },
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
@@ -69,7 +70,7 @@
     "@types/jquery": "^3.3.5",
     "@types/less": "0.0.34",
     "@types/lodash": "^4.14.113",
-    "@types/node": "^8.9.4",
+    "@types/node": "^8.9.5",
     "@types/nunjucks": "^3.1.0",
     "@types/phantom": "^3.2.5",
     "@types/remarkable": "^1.7.0",
@@ -86,7 +87,7 @@
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
-    "tslint-no-circular-imports": "^0.5.0",
+    "tslint-no-circular-imports": "^1.0.0",
     "tslint-sonarts": "^1.7.0",
     "typescript": "^2.8.4"
   }
