@@ -3,8 +3,7 @@ import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
 import * as tmp from 'tmp';
-import { SiteBuildContext } from '../interfaces';
-import { Context as TemplateContext } from './template.config';
+import { SiteBuildContext, TemplateContext } from '../interfaces';
 
 /**
  * Html Stream --> Site Object

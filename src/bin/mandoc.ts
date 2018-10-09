@@ -13,7 +13,7 @@ import { extName } from '../lib/util';
 import { PKG_ROOT } from '../paths.const';
 import SiteWrapper from '../scripts/html2site.stream';
 import { renderMarkdown } from '../scripts/md2html.stream';
-import PDFStream from '../scripts/site2pdf.stream';
+import createPDFRenderStream from '../scripts/site2pdf.stream';
 import { getConfig as templateConfigure } from '../scripts/template.config';
 
 const pkg_json = require(path.resolve(PKG_ROOT, './package.json'));
@@ -129,7 +129,7 @@ program.version(pkg_json.version, '-v, --version')
     ).pipe(
       SiteWrapper(tpl_cfg),
     ).pipe(
-      PDFStream(),
+      createPDFRenderStream(),
     ).pipe(
       fs.createWriteStream(options.output)
         .on('finish', () => {

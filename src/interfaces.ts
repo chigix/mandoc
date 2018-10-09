@@ -94,6 +94,37 @@ export interface TemplateConfiguration {
 
 /** Context Interface */
 
+export interface TemplateContext extends TemplateConfiguration
+  , RegisterExtensionContext {
+  /**
+   * The root directory of the template package.
+   *
+   * Default: The root of the directory containing the template's config
+   * file or the `package.json` or the [pwd](https://en.wikipedia.org/wiki/Pwd)
+   * if no `package.json` is found.
+   */
+  rootDir: string;
+}
+
+export interface RegisterExtensionContext {
+  renderers: {
+    [name: string]: {
+      output: string,
+      stream: stream.Transform,
+    } | undefined,
+    'njk': {
+      output: 'html',
+      stream: stream.Transform,
+    },
+    'md'?: {
+      output: 'html',
+      stream: stream.Transform,
+    },
+  };
+
+  helpers: { [name: string]: (...args: (string | Object)[]) => string };
+}
+
 export interface SiteBuildContext {
   rootDir: Path;
   index: string;

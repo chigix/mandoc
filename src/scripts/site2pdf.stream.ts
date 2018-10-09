@@ -13,7 +13,7 @@ const phantom_path = require('phantomjs-prebuilt').path;
  * @export
  * @returns {stream.Transform}
  */
-export default function renderPdf(): stream.Transform {
+export default function createPDFRenderStream(): stream.Transform {
   return through.obj(async function (site: SiteBuildContext, enc, flush) {
     const through_scope = this;
     const phantom_instance = await phantom.create([], {

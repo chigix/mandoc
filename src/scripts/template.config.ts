@@ -1,9 +1,13 @@
 import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as path from 'path';
-import * as stream from 'stream';
 import * as through from 'through2';
-import { CmdMandocOptionsTplConf, TemplateConfiguration } from '../interfaces';
+import {
+  CmdMandocOptionsTplConf,
+  RegisterExtensionContext,
+  TemplateConfiguration,
+  TemplateContext,
+} from '../interfaces';
 import { isFile, jsonlintErrCatch } from '../lib/util';
 import {
   PACKAGE_JSON,
@@ -17,48 +21,17 @@ import { renderMarkdown } from './md2html.stream';
 import { NJK_STREAM_FACTORY } from './template.stream';
 const requireg = require('requireg');
 
-export interface Context extends TemplateConfiguration
-  , RegisterExtensionContext {
-  /**
-   * The root directory of the template package.
-   *
-   * Default: The root of the directory containing the template's config
-   * file or the `package.json` or the [pwd](https://en.wikipedia.org/wiki/Pwd)
-   * if no `package.json` is found.
-   */
-  rootDir: string;
-}
-
-export interface RegisterExtensionContext {
-  renderers: {
-    [name: string]: {
-      output: string,
-      stream: stream.Transform,
-    } | undefined,
-    'njk': {
-      output: 'html',
-      stream: stream.Transform,
-    },
-    'md'?: {
-      output: 'html',
-      stream: stream.Transform,
-    },
-  };
-
-  helpers: { [name: string]: (...args: (string | Object)[]) => string };
-}
-
 function configToContext(
   configuration: TemplateConfiguration, opts: {
     configFile: string,
-  }): Context {
+  }): TemplateContext {
   // TODO: Validate configuration.
   const tpl_ctx = _.assign({
     rootDir: path.dirname(opts.configFile),
     main: TPL_DEFAULT_LAYOUT_FILE,
     cssBaseDir: TPL_DEFAULT_SRC_DIR,
     jsBaseDir: TPL_DEFAULT_SRC_DIR,
-  } as Context, configuration);
+  } as TemplateContext, configuration);
 
   const register: RegisterExtensionContext = {
     renderers: {
@@ -195,7 +168,7 @@ export function readConfig(
   cmdOpts?: CmdMandocOptionsTplConf,
   templateConfig?: TemplateConfiguration,
   parentConfigPath?: string,
-): Context {
+): TemplateContext {
   let raw_options: TemplateConfiguration;
   let config_path;
 
@@ -250,7 +223,7 @@ export function readConfig(
  *
  * @param template_name Template Package name or the path to the template directory.
  */
-export function getConfig(template_name: string): Context {
+export function getConfig(template_name: string): TemplateContext {
   return readConfig({
     template: template_name,
   });

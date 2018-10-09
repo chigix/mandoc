@@ -4,8 +4,8 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
+import { RegisterExtensionContext, TemplateContext } from '../interfaces';
 import { DocumentDescriptor, Style } from '../interfaces';
-import { Context, RegisterExtensionContext } from './template.config';
 import { CSS_HELPER_FACTORY, JS_HELPER_FACTORY } from './template.helper';
 const nunjucks_runtime = require('nunjucks').runtime;
 const TemplateLoader = require('../lib/njk-loader').TemplateLoader;
@@ -16,7 +16,7 @@ const TemplateLoader = require('../lib/njk-loader').TemplateLoader;
  * @param register
  */
 export function NJK_STREAM_FACTORY(
-  tplCtx: Context,
+  tplCtx: TemplateContext,
   register: RegisterExtensionContext): stream.Transform {
   return through({ objectMode: true }, function (report: DocumentDescriptor, enc, flush) {
     report.body = new nunjucks_runtime.SafeString(report.body);
@@ -30,7 +30,6 @@ export function NJK_STREAM_FACTORY(
     const njk_env = new nunjucks.Environment(
       new TemplateLoader(search_paths),
     );
-    const self = this;
     njk_env.render(
       tplCtx.main,
       _.assign({}, report, _.assign({
@@ -55,7 +54,7 @@ export function NJK_STREAM_FACTORY(
  * @TODO check again if it is needed to be removed
  * @param tplCtx
  */
-export function LESS_STREAM_FACTORY(tplCtx: Context) {
+export function LESS_STREAM_FACTORY(tplCtx: TemplateContext) {
   return through({ objectMode: true }, function (ref: Style, enc, flush) {
     less.render(ref.text, ref).then(output => {
       flush(undefined, output.css);

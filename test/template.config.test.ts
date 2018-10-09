@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import { readConfig } from 'mandoc/scripts/template.config';
-import { TEST_FIXTURE } from './constants';
 
 test('Error when reading templateConfig without configPath', () => {
   expect(() => {

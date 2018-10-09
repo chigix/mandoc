@@ -9,13 +9,13 @@
     "mandoc-gen": "ts-node  --project tsconfig/tsconfig.base.json ./src/bin/mandoc-gen.ts",
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "build": "npm-run-all build-clean tsc-build build-package build-tpls",
+    "build": "npm-run-all build-clean ts-build build-package build-tpls",
     "build-clean": "shx rm -rf ./dist",
     "build-package": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./build/make-packages.ts",
     "build-source-map-clean": "ts-node ./build/make-clean-source-map.ts",
     "build-tpls": "ts-node ./build/make-templates.ts",
-    "tsc-build": "tsc -p tsconfig/tsconfig.base.json && tsc -p tsconfig/tsconfig.build.json",
-    "tsc-lint": "tslint -c tslint.json --project tsconfig/tsconfig.base.json \"src/**/*.ts\""
+    "ts-build": "tsc -p tsconfig/tsconfig.base.json && tsc -p tsconfig/tsconfig.build.json",
+    "ts-lint": "tslint -c tslint.json --project tsconfig/tsconfig.base.json \"src/**/*.ts\""
   },
   "repository": {
     "type": "git",
@@ -88,7 +88,7 @@
     "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
     "tslint-no-circular-imports": "^1.0.0",
-    "tslint-sonarts": "^1.7.0",
+    "tslint-sonarts": "^1.8.0",
     "typescript": "^3.0.3"
   }
 }

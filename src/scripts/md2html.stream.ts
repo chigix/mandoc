@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as hljs from 'highlight.js';
 import * as Remarkable from 'remarkable';
 import * as stream from 'stream';
