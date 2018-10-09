@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Doc } from 'mandoc/interfaces';
+import { DocumentDescriptor } from 'mandoc/interfaces';
 import { TEMPLATE_DIR } from 'mandoc/paths.const';
 import { renderMarkdown } from 'mandoc/scripts/md2html.stream';
 import { readConfig as tplCfg } from 'mandoc/scripts/template.config';
@@ -18,14 +18,14 @@ function markdownStream(file: string) {
 test('Basic RenderMarkdown', () => {
   markdownStream(
     path.join(TEST_FIXTURE, './ipsum.md'),
-  ).pipe(through.obj((report: Doc, enc, cb) => {
+  ).pipe(through.obj((report: DocumentDescriptor, enc, cb) => {
     expect(report.body).toBe(
       fs.readFileSync(path.join(TEST_FIXTURE, './ipsum.html'))
         .toString('utf8'));
   }));
   markdownStream(
     path.join(TEST_FIXTURE, './keiyaku-test.md'),
-  ).pipe(through.obj((report: Doc, enc, cb) => {
+  ).pipe(through.obj((report: DocumentDescriptor, enc, cb) => {
     expect(report.body).toBe(
       fs.readFileSync(path.join(TEST_FIXTURE, './keiyaku-test.html'))
         .toString('utf8'));

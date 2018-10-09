@@ -7,7 +7,7 @@ import _ = require('lodash');
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { CmdMandocOptions, OutputBuild, Path } from '../interfaces';
+import { CmdMandocOptions, Path } from '../interfaces';
 import { DocumentNotFoundError } from '../lib/errors';
 import { extName } from '../lib/util';
 import { PKG_ROOT } from '../paths.const';
@@ -62,7 +62,6 @@ program.version(pkg_json.version, '-v, --version')
           file.substring(0, file.length - ext_name.length) + '.pdf' :
           null,
         watch: false,
-        build: OutputBuild.StandaloneFile,
       } as CmdMandocOptions, cmd);
       if (!_.isString(result.output)) {
         process.stderr.write(chalk.redBright('Please provide output path'));

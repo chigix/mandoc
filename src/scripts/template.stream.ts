@@ -4,7 +4,7 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { Doc, Style } from '../interfaces';
+import { DocumentDescriptor, Style } from '../interfaces';
 import { Context, RegisterExtensionContext } from './template.config';
 import { CSS_HELPER_FACTORY, JS_HELPER_FACTORY } from './template.helper';
 const nunjucks_runtime = require('nunjucks').runtime;
@@ -18,7 +18,7 @@ const TemplateLoader = require('../lib/njk-loader').TemplateLoader;
 export function NJK_STREAM_FACTORY(
   tplCtx: Context,
   register: RegisterExtensionContext): stream.Transform {
-  return through({ objectMode: true }, function (report: Doc, enc, flush) {
+  return through({ objectMode: true }, function (report: DocumentDescriptor, enc, flush) {
     report.body = new nunjucks_runtime.SafeString(report.body);
     const search_paths = [tplCtx.rootDir];
     if (tplCtx.cssBaseDir) {

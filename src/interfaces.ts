@@ -8,10 +8,8 @@ export type Glob = string;
 /**
  * Abstract Descriptor for inputted document source,
  * mostly to be converted or parsed in later processes.
- *
- * TODO: rename to `DocumentDescriptor`
  */
-export interface Doc {
+export interface DocumentDescriptor {
   title: string;
   author?: {
     name: string,
@@ -41,17 +39,15 @@ export interface CmdMandocOptions
   extends CmdMandocOptionsTplConf {
   from: 'markdown' | string;
   to: 'pdf' | string;
-/**
+  /**
    * Whether to show tableOfContents in Document Compiling.
    *
    * @type {boolean}
    * @memberof CmdMandocOptions
- */
+   */
   tableOfContents: boolean;
   output: Path;
   watch: boolean;
-  // TODO: with writingFormat instead
-  build: OutputBuild;
 }
 
 export interface CmdMandocOptionsTplConf {
@@ -94,14 +90,6 @@ export interface TemplateConfiguration {
   helper?: (register:
     (name: string, fn: (...args: (string | Object)[]) => string) => void,
   ) => void;
-}
-
-/** Preset Enums */
-
-export enum OutputBuild {
-  StandaloneFile,
-  Site,
-  Webpack,
 }
 
 /** Context Interface */

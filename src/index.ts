@@ -8,7 +8,6 @@ export {
 } from './paths.const';
 
 export {
-  Doc as DocumentDescriptor,
-  OutputBuild as OutputResultType,
+  DocumentDescriptor,
   Path,
 } from './interfaces';
