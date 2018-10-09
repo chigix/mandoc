@@ -59,7 +59,8 @@ function adjustToTerminalWidth(str: string) {
       typings: './index.d.ts',
       bin: {
         'mandoc': './bin/mandoc',
-        'mandoc-gen': './bin/mandoc-gen',
+        // TODO: mandoc-gen for generating template package since 1.1+
+        // 'mandoc-gen': './bin/mandoc-gen',
       },
       // Try in future commits, referring to the practice in rxjs repository.
       // module: './_esm5/index.js',
