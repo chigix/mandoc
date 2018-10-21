@@ -1,0 +1,52 @@
+@def-area-name:     count-from-h;
+@def-counter-from:  2;     // Initialize Counter from h2
+@max-counter-level: 6;     // Only h1~h6 are considered
+
+.header-counter(
+    @name-area: ~"@{def-area-name}@{def-counter-from}";
+    @counter-from: @def-counter-from;
+) {
+    .@{name-area} {
+        counter-reset: ~"h@{counter-from}counter";
+        .header-counter-internal(@counter-from, @counter-from);
+    }
+}
+
+.header-counter-css-rule ( @property, @level ) {
+    @{property}: ~"h@{level}counter";
+}
+
+.header-counter-internal(
+    @counter-header-level;
+    @counter-beginning: @def-counter-from;
+) when (@counter-header-level =< @max-counter-level) {
+    .make-counter-string(@index, @curr-level, @curr) when (@index =< @curr-level) {
+        .make-counter-string((@index + 1), @curr-level, "@{curr} '.' counter(h@{index}counter)");
+    }
+    .make-counter-string(@index, @curr-level, @curr) when (@index > @counter-header-level) {
+        .make-counter-string-fin(@curr);
+    }
+    .make-counter-string-fin(@str) {
+        content: ~"@{str}'.\0000a0\0000a0'";
+    }
+    h@{counter-header-level} {
+        .header-counter-css-rule(counter-reset, @counter-header-level + 1);
+        &:before{
+            .header-counter-css-rule(counter-increment, @counter-header-level);
+            .make-counter-string(
+                @counter-beginning + 1, 
+                @counter-header-level, 
+                "counter(h@{counter-beginning}counter)");
+        }
+        &.no-count:before {
+            content: none;
+            counter-increment: none;
+        }
+    }
+    .header-counter-internal((@counter-header-level + 1), @counter-beginning);
+}
+
+body {
+    .header-counter(count-from-h1, 1);
+    .header-counter(count-from-h2, 2);
+}
