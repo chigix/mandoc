@@ -59,10 +59,13 @@ program.version(pkg_json.version, '-v, --version')
         template: 'default',
         tableOfContents: false,
         output: _.isString(file) ?
-          file.substring(0, file.length - ext_name.length) + '.pdf' :
+          file.substring(0, file.length - ext_name.length) :
           null,
         watch: false,
       } as CmdMandocOptions, cmd);
+      if (result.to && result.output) {
+        result.output = `${result.output}.${result.to}`;
+      }
       if (!_.isString(result.output)) {
         process.stderr.write(chalk.redBright('Please provide output path'));
         process.exit(1);
@@ -104,7 +107,7 @@ program.version(pkg_json.version, '-v, --version')
 
     const tpl_cfg = templateConfigure(options.template);
 
-    start_stream.pipe(
+    let building_stream = start_stream.pipe(
       (
         ({
           'md': () => renderMarkdown({
@@ -126,16 +129,22 @@ program.version(pkg_json.version, '-v, --version')
       })().stream.on('error', function (e) {
         chalk.redBright(e.stack as string);
       }),
-    ).pipe(
+    );
+    if (options.to === 'pdf') {
+      building_stream = building_stream.pipe(
       SiteWrapper(tpl_cfg),
     ).pipe(
-      createPDFRenderStream(),
-    ).pipe(
-      fs.createWriteStream(options.output)
-        .on('finish', () => {
+        createPDFRenderStream(tpl_cfg),
+      );
+    }
+    building_stream.pipe(
+      fs.createWriteStream(options.output),
+    ).on('finish', () => {
           process.exit(0);
-        }),
-    );
+    }).on('error', (e) => {
+      process.stderr.write(chalk.redBright(e.message));
+      process.exit(1);
+    });
   });
 
 (function main() {

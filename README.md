@@ -58,6 +58,25 @@ About the template package, mandoc is designed to support npm packaged template
 release as well, which means that you can share or download other designers'
 template work through `npm install -g tpl_name` simply.
 
+## About Output
+
+Currently, `html` and `pdf` are supported, and default output format would be
+`pdf`.
+
+If you want html format as the output result:
+
+```bash
+$ mandoc --to html path/to/your/doc.md
+```
+
+## TODO
+
+* Separate types package outside src, preparing for the future migration and
+  typescript support in Template Script Files.
+* Support YAML-Formatted Metadata Parsing
+  * https://blog.github.com/2013-09-27-viewing-yaml-metadata-in-your-documents/
+  * https://jekyllrb.com/docs/front-matter/
+
 ## To Try
 
 * tsconfig file series practice
