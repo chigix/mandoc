@@ -58,6 +58,7 @@ program.version(pkg_json.version, '-v, --version')
         to: 'pdf',
         template: 'default',
         tableOfContents: false,
+        pageSize: 'A4',
         output: _.isString(file) ?
           file.substring(0, file.length - ext_name.length) :
           null,
@@ -132,15 +133,15 @@ program.version(pkg_json.version, '-v, --version')
     );
     if (options.to === 'pdf') {
       building_stream = building_stream.pipe(
-      SiteWrapper(tpl_cfg),
-    ).pipe(
+        SiteWrapper(tpl_cfg),
+      ).pipe(
         createPDFRenderStream(tpl_cfg),
       );
     }
     building_stream.pipe(
       fs.createWriteStream(options.output),
     ).on('finish', () => {
-          process.exit(0);
+      process.exit(0);
     }).on('error', (e) => {
       process.stderr.write(chalk.redBright(e.message));
       process.exit(1);

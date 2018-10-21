@@ -3,7 +3,10 @@ import * as path from 'path';
 import * as pptr from 'puppeteer';
 import * as stream from 'stream';
 import * as through from 'through2';
-import { SiteBuildContext } from '../interfaces';
+import {
+  CmdMandocOptionsPrintConf as PrintConfig,
+  SiteBuildContext,
+} from '../interfaces';
 import { TemplateFileError } from '../lib/errors';
 
 /**
@@ -12,7 +15,10 @@ import { TemplateFileError } from '../lib/errors';
  * @export
  * @returns {stream.Transform}
  */
-export default function createPDFRenderStream(): stream.Transform {
+export default function createPDFRenderStream(
+  printConf: PrintConfig & {
+    preferCssPageSize: boolean,
+  }): stream.Transform {
   return through.obj(async function (site: SiteBuildContext, enc, flush) {
     const browser = await pptr.launch();
     const page = await browser.newPage();
@@ -22,15 +28,16 @@ export default function createPDFRenderStream(): stream.Transform {
         `Unable to load temp file: ${path.resolve(site.rootDir, site.index)}`));
     }
 
-    return page.pdf({
-      format: 'A4',
-    }).then(buffer => {
-      return this.push(buffer);
-    }).then(() => {
-      return browser.close();
-    }).then(() => {
-      site.cleanupCallback();
-      flush();
-    });
+    return new Promise(resolve => setTimeout(resolve, 1000))
+      .then(_ => page.pdf({
+        format: printConf.pageSize,
+        preferCSSPageSize: printConf.preferCssPageSize,
+      }))
+      .then(buffer => this.push(buffer))
+      .then(_ => browser.close())
+      .then(_ => {
+        site.cleanupCallback();
+        flush();
+      });
   });
 }

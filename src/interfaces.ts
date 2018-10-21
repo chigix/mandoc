@@ -36,7 +36,7 @@ export interface Style {
 /** Configuration Interface */
 
 export interface CmdMandocOptions
-  extends CmdMandocOptionsTplConf {
+  extends CmdMandocOptionsTplConf, CmdMandocOptionsPrintConf {
   from: 'markdown' | string;
   to: 'pdf' | string;
   /**
@@ -61,6 +61,13 @@ export interface CmdMandocOptionsTplConf {
   template: string;
 }
 
+// TODO recheck the preset formats through code!
+export interface CmdMandocOptionsPrintConf {
+  /** A4, A5, ... */
+  pageSize?: 'Letter' | 'Legal' | 'Tabload' | 'Ledger'
+  | 'A0' | 'A1' | 'A2' | 'A3' | 'A4' | 'A5';
+}
+
 export interface TemplateConfiguration {
   /**
    * The primary entry point to the template usage.
@@ -82,6 +89,15 @@ export interface TemplateConfiguration {
    * `source/` directory is default.
    */
   jsBaseDir?: Path;
+  /**
+   * If true, render page with the size declared in the template CSS,
+   * otherwise use the options in `CmdMandocOptionsPrintConf`.
+   * Default is false.
+   *
+   * @type {boolean}
+   * @memberof TemplateConfiguration
+   */
+  preferCssPageSize: boolean;
   renderer?: (register:
     (name: string, output: string, processStream: stream.Transform) => void,
     // tplCtx: Context // Plan in the future for support getting mandoc context

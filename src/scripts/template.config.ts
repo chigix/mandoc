@@ -31,6 +31,7 @@ function configToContext(
     main: TPL_DEFAULT_LAYOUT_FILE,
     cssBaseDir: TPL_DEFAULT_SRC_DIR,
     jsBaseDir: TPL_DEFAULT_SRC_DIR,
+    preferCssPageSize: false,
   } as TemplateContext, configuration);
 
   const register: RegisterExtensionContext = {
@@ -43,7 +44,10 @@ function configToContext(
   };
 
   register.renderers.njk = {
-    output: 'html', stream: NJK_STREAM_FACTORY(tpl_ctx, register),
+    output: 'html', stream: NJK_STREAM_FACTORY(tpl_ctx, {
+      // TODO this option should be read from cmd options
+      pageSize: 'A4',
+    }, register),
   };
 
   register.renderers.md = {

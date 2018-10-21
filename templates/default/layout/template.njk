@@ -6,6 +6,10 @@
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        @page {
+            size: {{ print.paperWidth }} {{ print.paperHeight }};
+            margin: 2cm;
+        }
         {% include normalizeCSS %}
         {% include "style.css" %}
     </style>

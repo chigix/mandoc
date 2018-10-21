@@ -40,6 +40,7 @@ test('Basic Template Rendering', done => {
     tplCfg(
       undefined, {
         main: 'layout/template.njk',
+        preferCssPageSize: false,
         helper: (register) => {
           register('normalizeCSS', slash(require.resolve('normalize.css')));
         },
