@@ -15,9 +15,12 @@ const DIST_ROOT = path.resolve(__dirname, '../dist');
     fs.readFileSync(path.resolve(dist_dir, './source/style.less'))
       .toString('utf8'),
     {
-      filename: path.resolve(dist_dir, './source'),
-    }).then(
+      filename: path.resolve(dist_dir, './source/style.less'),
+      paths: [path.resolve(dist_dir, './source')],
+    })
+    .then(
       output => fs.writeFileSync(
         path.resolve(dist_dir, './source/style.css'), output.css),
-  );
+    ).catch(e => console.log(e))
+    .then(_ => sh.rm(path.resolve(dist_dir, './**/*.less')));
 })();
