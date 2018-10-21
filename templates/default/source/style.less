@@ -1,65 +1,11 @@
-@page { margin: 0 }
-body { margin: 0 }
-.sheet {
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-  box-sizing: border-box;
-  page-break-after: always;
-}
-
-/** Paper sizes **/
-body {
-    font-size: 12pt;
-    // margin: 1.25in;
-    &.A3 {
-        .sheet { width: 297mm; height: 419mm }
-        &.landscape {
-            .sheet { width: 420mm; height: 296mm }
-        }
-    }
-    &.A4 {
-        .sheet { width: 210mm; height: 296mm }
-        &.landscape {
-            .sheet { width: 297mm; height: 209mm }
-        }
-    }
-    &.A5 {
-        .sheet { width: 148mm; height: 209mm }
-        &.landscape {
-            .sheet { width: 210mm; height: 147mm }
-        }
-    }
-    &.letter {
-        .sheet { width: 216mm; height: 279mm }
-        &.landscape {
-            .sheet { width: 280mm; height: 215mm }
-        }
-    }
-    &.legal {
-        .sheet { width: 216mm; height: 356mm }
-        &.landscape {
-            .sheet { width: 357mm; height: 215mm }
-        }
-    }
-}
-
-/** Padding area **/
-.sheet {
-    &.padding-10mm { padding: 10mm }
-    &.padding-15mm { padding: 15mm }
-    &.padding-20mm { padding: 20mm }
-    &.padding-25mm { padding: 25mm }
-}
-
+@import "font.less";
 /** For screen preview **/
 @media screen {
-  body { background: #e0e0e0 }
-  .sheet {
-    background: white;
-    box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
-    margin: 5mm auto;
-  }
+    article {
+        width: 100%;
+        max-width: 960px;
+        margin: 5px auto;
+    }
 }
 
 /** Fix for Chrome issue #273306 **/
@@ -71,4 +17,27 @@ body {
   body.letter, body.legal    { width: 216mm }
   body.letter.landscape      { width: 280mm }
   body.legal.landscape       { width: 357mm }
+}
+article {
+    font-size: 12pt;
+    font-family: @font-family-base;
+    hyphens: auto;             /* turn on hyphenation */
+    text-align: justify;       /* and justification */
+    &.print-two-column {
+        columns: 2;
+        column-gap: 0.25in;
+    }
+    section {
+        &.lead {
+            column-span: all;
+            text-align: center;
+            margin: 2em 0;
+            font-style: italic;
+            h1 {
+                font-style: normal;
+            }
+            // TODO authors support
+            // TODO abstract support
+        }
+    }
 }

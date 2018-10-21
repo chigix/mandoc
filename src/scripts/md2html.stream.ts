@@ -50,10 +50,11 @@ export function renderMarkdown(ctx: {
     flush();
   }, function flush(cb) {
     this.push({
+      // TODO separate first header as title
       title: 'Report',
       author: [],
       // External Resources reference is a problem here
-      // @TODO: At least image paths could be collected through markdown parser
+      // TODO At least image paths could be collected through markdown parser
       body: createMarkdownParser().render(md),
     } as DocumentDescriptor);
     cb();

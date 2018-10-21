@@ -44,6 +44,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
+    "cheerio": "^1.0.0-rc.2",
     "commander": "^2.18.0",
     "fs-extra": "^7.0.0",
     "highlight.js": "^9.12.0",
@@ -62,6 +63,7 @@
     "slash": "^2.0.0",
     "through2": "^2.0.3",
     "tmp": "0.0.33",
+    "uniqid": "^5.0.3",
     "winston": "^3.0.0"
   },
   "devDependencies": {
