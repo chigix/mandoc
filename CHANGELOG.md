@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0-alpha.1"></a>
+# [1.1.0-alpha.1](https://github.com/chigix/mandoc/compare/v1.1.0-alpha.0...v1.1.0-alpha.1) (2018-10-22)
+
+
+### Bug Fixes
+
+* **cli:** fix message emission when cli option passed error ([e72b84a](https://github.com/chigix/mandoc/commit/e72b84a))
+
+
+
 <a name="1.1.0-alpha.0"></a>
 # [1.1.0-alpha.0](https://github.com/chigix/mandoc/compare/v1.0.2-beta.2...v1.1.0-alpha.0) (2018-10-21)
 
