@@ -21,4 +21,12 @@ cd dist
 
 npm publish
 
+echo "Install the current build as a global package?"
+select yn in "Yes" "No"; do
+  case $yn in
+    Yes) npm install -g; break;;
+    No) echo "Skipped npm install -g"; break;;
+  esac
+done
+
 cd ../
