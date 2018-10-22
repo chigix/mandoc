@@ -48,7 +48,8 @@ program.version(pkg_json.version, '-v, --version')
       file = null;
     }
     if (_.isString(cmd)) {
-      throw `Unable to recognize '${cmd}'`;
+      process.stderr.write(chalk.redBright(`Unrecognized option: '${cmd}'`));
+      process.exit(1);
     }
 
     const options = (function validateAndFixOptions() {
