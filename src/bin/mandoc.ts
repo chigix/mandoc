@@ -9,7 +9,7 @@ import * as stream from 'stream';
 import * as through from 'through2';
 import { CmdMandocOptions, Path } from '../interfaces';
 import { DocumentNotFoundError } from '../lib/errors';
-import { extName } from '../lib/util';
+import { extName, generatePrintContext } from '../lib/util';
 import { PKG_ROOT } from '../paths.const';
 import SiteWrapper from '../scripts/html2site.stream';
 import { renderMarkdown } from '../scripts/md2html.stream';
@@ -29,6 +29,8 @@ program.version(pkg_json.version, '-v, --version')
   .option('-t, --to [FORMAT]', 'Specify output format. PDF Default')
   .option('--template [NAME|DIR]',
     'Use a template instead of the default for the generated document')
+  .option('--pagesize, --print.pageSize [SIZE]',
+    'Paper Size, e.g. `letter`, `A4 landscape`')
   .option('--toc, --table-of-contents', 'non-null value if specified')
   .option('--toc-title', 'title of table of contents')
   .option('--lint', 'Lint Tool to check format and style issues in the document')
@@ -59,7 +61,6 @@ program.version(pkg_json.version, '-v, --version')
         to: 'pdf',
         template: 'default',
         tableOfContents: false,
-        pageSize: 'A4',
         output: _.isString(file) ?
           file.substring(0, file.length - ext_name.length) :
           null,
@@ -107,7 +108,8 @@ program.version(pkg_json.version, '-v, --version')
       return;
     }
 
-    const tpl_cfg = templateConfigure(options.template);
+    const PRINT_CTX = generatePrintContext(options['print.pageSize'] || 'A4');
+    const TPL_CTX = templateConfigure(options.template, PRINT_CTX);
 
     let building_stream = start_stream.pipe(
       (
@@ -126,17 +128,17 @@ program.version(pkg_json.version, '-v, --version')
       )(),
     ).pipe(
       (function tplStream() {
-        return tpl_cfg.renderers[extName(tpl_cfg.main)]
-          || tpl_cfg.renderers.njk;
+        return TPL_CTX.renderers[extName(TPL_CTX.main)]
+          || TPL_CTX.renderers.njk;
       })().stream.on('error', function (e) {
         chalk.redBright(e.stack as string);
       }),
     );
     if (options.to === 'pdf') {
       building_stream = building_stream.pipe(
-        SiteWrapper(tpl_cfg),
+        SiteWrapper(TPL_CTX),
       ).pipe(
-        createPDFRenderStream(tpl_cfg),
+        createPDFRenderStream(TPL_CTX, PRINT_CTX),
       );
     }
     building_stream.pipe(

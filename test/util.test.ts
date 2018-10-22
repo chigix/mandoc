@@ -1,4 +1,5 @@
-import { urlFor } from 'mandoc/lib/util';
+import { PrintContext } from 'mandoc/interfaces';
+import { generatePrintContext, urlFor } from 'mandoc/lib/util';
 import { TEMPLATE_DIR } from 'mandoc/paths.const';
 import * as path from 'path';
 
@@ -23,4 +24,19 @@ test('Basic urlFor cases', () => {
     baseDir: TEMPLATE_DIR,
     rootDir: TEMPLATE_DIR,
   })).toBe('/bankai');
+});
+
+test('Print Context Generator', () => {
+  expect(generatePrintContext('A4')).toEqual({
+    pageSize: 'A4',
+    paperOrientation: 'portrait',
+    paperWidth: 210,
+    paperHeight: 297,
+  } as PrintContext);
+  expect(generatePrintContext('A3')).toEqual({
+    pageSize: 'A3',
+    paperOrientation: 'portrait',
+    paperWidth: 297,
+    paperHeight: 420,
+  } as PrintContext);
 });

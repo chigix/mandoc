@@ -4,8 +4,9 @@ import * as pptr from 'puppeteer';
 import * as stream from 'stream';
 import * as through from 'through2';
 import {
-  CmdMandocOptionsPrintConf as PrintConfig,
+  PrintContext,
   SiteBuildContext,
+  TemplateContext,
 } from '../interfaces';
 import { TemplateFileError } from '../lib/errors';
 
@@ -16,9 +17,8 @@ import { TemplateFileError } from '../lib/errors';
  * @returns {stream.Transform}
  */
 export default function createPDFRenderStream(
-  printConf: PrintConfig & {
-    preferCssPageSize: boolean,
-  }): stream.Transform {
+  tpl: TemplateContext, print: PrintContext,
+): stream.Transform {
   return through.obj(async function (site: SiteBuildContext, enc, flush) {
     const browser = await pptr.launch();
     const page = await browser.newPage();
@@ -30,8 +30,8 @@ export default function createPDFRenderStream(
 
     return new Promise(resolve => setTimeout(resolve, 1000))
       .then(_ => page.pdf({
-        format: printConf.pageSize,
-        preferCSSPageSize: printConf.preferCssPageSize,
+        format: print.pageSize || 'A4',
+        preferCSSPageSize: tpl.preferCssPageSize,
       }))
       .then(buffer => this.push(buffer))
       .then(_ => browser.close())

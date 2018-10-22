@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as through from 'through2';
 import {
   CmdMandocOptionsTplConf,
+  PrintContext,
   RegisterExtensionContext,
   TemplateConfiguration,
   TemplateContext,
@@ -24,6 +25,7 @@ const requireg = require('requireg');
 function configToContext(
   configuration: TemplateConfiguration, opts: {
     configFile: string,
+    print: PrintContext,
   }): TemplateContext {
   // TODO: Validate configuration.
   const tpl_ctx = _.assign({
@@ -44,10 +46,7 @@ function configToContext(
   };
 
   register.renderers.njk = {
-    output: 'html', stream: NJK_STREAM_FACTORY(tpl_ctx, {
-      // TODO this option should be read from cmd options
-      pageSize: 'A4',
-    }, register),
+    output: 'html', stream: NJK_STREAM_FACTORY(tpl_ctx, opts.print, register),
   };
 
   register.renderers.md = {
@@ -169,6 +168,7 @@ function readConfigFile(configPath: string): TemplateConfiguration {
  * @param parentConfigPath Configuration file path.
  */
 export function readConfig(
+  printCtx: PrintContext,
   cmdOpts?: CmdMandocOptionsTplConf,
   templateConfig?: TemplateConfiguration,
   parentConfigPath?: string,
@@ -219,6 +219,7 @@ export function readConfig(
 
   return configToContext(raw_options, {
     configFile: config_path,
+    print: printCtx,
   });
 }
 
@@ -227,8 +228,8 @@ export function readConfig(
  *
  * @param template_name Template Package name or the path to the template directory.
  */
-export function getConfig(template_name: string): TemplateContext {
-  return readConfig({
+export function getConfig(template_name: string, print_ctx: PrintContext): TemplateContext {
+  return readConfig(print_ctx, {
     template: template_name,
   });
 }

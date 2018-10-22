@@ -36,7 +36,7 @@ export interface Style {
 /** Configuration Interface */
 
 export interface CmdMandocOptions
-  extends CmdMandocOptionsTplConf, CmdMandocOptionsPrintConf {
+  extends CmdMandocOptionsTplConf {
   from: 'markdown' | string;
   to: 'pdf' | string;
   /**
@@ -48,6 +48,7 @@ export interface CmdMandocOptions
   tableOfContents: boolean;
   output: Path;
   watch: boolean;
+  'print.pageSize'?: string;
 }
 
 export interface CmdMandocOptionsTplConf {
@@ -59,13 +60,6 @@ export interface CmdMandocOptionsTplConf {
    * - path to the template directory
    */
   template: string;
-}
-
-// TODO recheck the preset formats through code!
-export interface CmdMandocOptionsPrintConf {
-  /** A4, A5, ... */
-  pageSize?: 'Letter' | 'Legal' | 'Tabload' | 'Ledger'
-  | 'A0' | 'A1' | 'A2' | 'A3' | 'A4' | 'A5';
 }
 
 export interface TemplateConfiguration {
@@ -145,4 +139,12 @@ export interface SiteBuildContext {
   rootDir: Path;
   index: string;
   cleanupCallback: () => void;
+}
+
+export interface PrintContext {
+  pageSize?: 'Letter' | 'Legal' | 'Tabload' | 'Ledger'
+  | 'A0' | 'A1' | 'A2' | 'A3' | 'A4' | 'A5';
+  paperWidth: number; // millimeter
+  paperHeight: number; // millimeter
+  paperOrientation?: 'portrait' | 'landscape';
 }

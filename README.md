@@ -58,7 +58,7 @@ About the template package, mandoc is designed to support npm packaged template
 release as well, which means that you can share or download other designers'
 template work through `npm install -g tpl_name` simply.
 
-## About Output
+## Format Specific Options
 
 Currently, `html` and `pdf` are supported, and default output format would be
 `pdf`.
@@ -68,6 +68,17 @@ If you want html format as the output result:
 ```bash
 $ mandoc --to html path/to/your/doc.md
 ```
+
+## Print Option Section
+
+`--pagesize` *SIZE*, `--print.pageSize` *SIZE*
+: Specify the paper size for output pdf file.
+
+  *SIZE* format can be:
+  * `A4`
+  * `A3 landscape`
+  * `400mm 600mm`, where the left dedicates to the width to set and the right is
+    height
 
 ## TODO
 
