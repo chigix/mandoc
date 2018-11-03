@@ -1,0 +1,17 @@
+.rotate(@degrees) {
+  -moz-transform: rotate(@degrees);
+  -webkit-transform: rotate(@degrees);
+  -o-transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees);
+  transform: rotate(@degrees);
+  transition: transform 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+.codeblock(@bgcolor) {
+  background-color: @bgcolor;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+  border: 0.5px solid @gray-300;
+}
