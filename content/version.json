@@ -1,0 +1,16 @@
+{
+  "raw": "1.1.0",
+  "major": 1,
+  "minor": 1,
+  "patch": 0,
+  "preRelease": [
+    "local"
+  ],
+  "build": "sha.3f4dce04",
+  "version": "1.1.0",
+  "codeName": "stable",
+  "isSnapshot": false,
+  "full": "1.1.0+sha.3f4dce04",
+  "branch": "master",
+  "commitSHA": "3f4dce048d63a30fc85f720c1de4bbb6362a5f4b"
+}
