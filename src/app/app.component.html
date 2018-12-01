@@ -3,7 +3,7 @@
 <mat-toolbar color="primary" class="app-toolbar no-print" [class.transitioning]="isTransitioning">
   <mat-toolbar-row class="notification-container"><!-- Not Implemented Yet --></mat-toolbar-row>
   <mat-toolbar-row>
-    <button mat-button title="Docs menu">
+    <button mat-button title="Docs menu" class="hamburger" [class.starting]="isStarting" (click)="sideNav.toggle()">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
     <a href="/" class="nav-link home"><img src="assets/images/logo.svg" alt="ManDoc"></a>
@@ -13,5 +13,23 @@
     </a>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<mat-sidenav-container [class.starting]="isStarting" [class.has-floating-toc]="hasFloatingToc" role="main">
+  <mat-sidenav class="sideNav" [mode]="mode">
+    <div class="sidenav-menu">
+      <div>
+        <a href="guide/overview" class="vertical-menu-item level-1">
+          Overview
+        </a>
+      </div>
+      <div>
+        <a href="guide/installation" class="vertical-menu-item level-1">
+          Installation
+        </a>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>Main</mat-sidenav-content>
+</mat-sidenav-container>
 
 <app-footer [versionInfo]="versionInfo"></app-footer>
