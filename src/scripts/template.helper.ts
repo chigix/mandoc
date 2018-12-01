@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as through from 'through2';
-import { Style } from '../interfaces';
-import { TemplateContext } from '../interfaces';
+import { Style, TemplateContext } from '../interfaces';
 import * as util from '../lib/util';
 import {
   TPL_DEFAULT_LAYOUT_FILE,

@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 import * as fs from 'fs-extra';
 import * as _ from 'lodash';
-import * as mandocConsts from 'mandoc/paths.const';
 import * as path from 'path';
 import * as sh from 'shelljs';
 const stringLength = require('string-length');
@@ -45,7 +44,7 @@ function adjustToTerminalWidth(str: string) {
 }
 
 (function main() {
-  process.stdout.write(chalk.inverse(' Building package \n'));
+  process.stdout.write(chalk.inverse('==> Building package \n'));
   const package_config = require(pkg_json_path);
   // Learned from
   // https://github.com/ReactiveX/rxjs/blob/d5658fe68093861e0612be3c8c045f973168b87c/.make-packages.js#L45
