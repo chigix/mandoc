@@ -1,0 +1,28 @@
+@import "../../../styles/constants.less";
+
+p {
+  text-align: center;
+}
+
+:host {
+  position: relative;
+  display: block;
+  padding: 48px;
+  line-height: 24px;
+  background-color: @indigo;
+  color: @offwhite;
+  font-weight: 300;
+}
+
+a {
+  color: @offwhite;
+  font-weight: 300;
+  text-decoration: none;
+  position: relative;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:visited {
+    text-decoration: none;
+  }
+}
