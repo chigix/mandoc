@@ -1,0 +1,72 @@
+// DOCS PAGE / STANDARD: TOPNAV TOOLBAR FIXED
+mat-toolbar.mat-toolbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  mat-toolbar-row {
+    padding: 0 16px 0 0;
+  }
+  mat-toolbar-row.notification-container {
+    padding: 0;
+    height: auto;
+    overflow: hidden;
+  }
+}
+
+// HAMBURGER BUTTON
+.hamburger.mat-button {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  @media (min-width: 992px) {
+    // Hamburger hidden by default on large screens.
+    // (Will be shown per doc.)
+    margin: 0 24px 0 -88px; // hidden in the left of screen
+  }
+  &:not(.starting) {
+    transition-duration: .4s;
+    transition-property: color, margin;
+    transition-timing-function: cubic-bezier(.25, .8, .25, 1);
+  }
+  &:hover {
+    color: white;
+  }
+  mat-icon {
+    color: white;
+  }
+}
+
+a.nav-link {
+  & > * {
+    vertical-align: middle;
+  }
+  &.home img {
+    position: relative;
+    height: 40px;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.search-box-placeholder {
+  display: flex;
+  min-height: 1px;
+  width: 100%;
+}
+
+// TODO: Rename
+.app-toolbar {
+  .external-icon {
+    margin-left: 16px;
+    @media screen and (max-width: 480px) {
+      margin-left: 8px;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

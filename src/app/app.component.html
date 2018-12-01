@@ -1,11 +1,16 @@
 <div id="top-of-page"></div>
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="app-toolbar no-print" [class.transitioning]="isTransitioning">
   <mat-toolbar-row class="notification-container"><!-- Not Implemented Yet --></mat-toolbar-row>
   <mat-toolbar-row>
     <button mat-button title="Docs menu">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
+    <a href="/" class="nav-link home"><img src="assets/images/logo.svg" alt="ManDoc"></a>
+    <div class="search-box-placeholder"></div>
+    <a href="https://github.com/chigix/mandoc" class="nav-link external-icon" target="_blank" title="GitHub">
+      <mat-icon svgIcon="github"></mat-icon>
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
 

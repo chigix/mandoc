@@ -26,6 +26,8 @@ export class CustomIconRegistry extends MatIconRegistry {
         .bypassSecurityTrustResourceUrl('assets/icon-image-set/keyboard_arrow_right.svg'));
     this.addSvgIcon('menu',
       this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-image-set/menu.svg'));
+    this.addSvgIcon('github',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icon-image-set/github-icon.svg'));
   }
 
 }
