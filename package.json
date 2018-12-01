@@ -2,6 +2,7 @@
   "name": "mandoc-docs-app",
   "version": "0.0.0",
   "scripts": {
+    "commit": "git-cz",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -19,7 +20,7 @@
     "@angular/core": "~7.0.0",
     "@angular/forms": "~7.0.0",
     "@angular/http": "~7.0.0",
-    "@angular/material": "^7.0.1",
+    "@angular/material": "^7.0.4",
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
@@ -38,6 +39,8 @@
     "@types/node": "^8.10.37",
     "@types/shelljs": "^0.8.0",
     "codelyzer": "~4.5.0",
+    "commitizen": "^3.0.5",
+    "cz-conventional-changelog": "^2.1.0",
     "dgeni": "^0.4.10",
     "dgeni-packages": "^0.26.12",
     "jasmine-core": "~2.99.1",
@@ -52,5 +55,10 @@
     "ts-node": "^7.0.1",
     "tslint": "~5.11.0",
     "typescript": "~3.1.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
