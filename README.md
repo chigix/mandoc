@@ -82,11 +82,14 @@ $ mandoc --to html path/to/your/doc.md
 
 ## TODO
 
+* `print.margin` option support
 * Separate types package outside src, preparing for the future migration and
   typescript support in Template Script Files.
 * Support YAML-Formatted Metadata Parsing
   * https://blog.github.com/2013-09-27-viewing-yaml-metadata-in-your-documents/
   * https://jekyllrb.com/docs/front-matter/
+* Support curly-bracket wrapped directive:
+  https://github.com/angular/angular/commit/1847550ad17ddd4a20d02b8a96f718e632ab27d1#diff-8aadef410e1b120ea8201253373fe1e5R2912
 
 ## To Try
 
