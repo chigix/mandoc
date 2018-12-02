@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/chigix/mandoc/compare/v1.1.1...v1.1.2) (2018-12-02)
+
+
+### Bug Fixes
+
+* **npm packages:** update dependencies for vulnerability ([252ee59](https://github.com/chigix/mandoc/commit/252ee59))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/chigix/mandoc/compare/v1.1.0...v1.1.1) (2018-12-01)
 
