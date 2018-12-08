@@ -36,6 +36,14 @@ gulp.task('layout-dir', function () {
     .pipe(gulp.dest(distDir('layout')));
 });
 
+gulp.task('docs', function (done) {
+  gulp.src('../../LICENSE').pipe(gulp.dest(distDir()));
+  gulp.src('*.md')
+    .pipe(gulp.dest(distDir()));
+  return gulp.src('*.png')
+    .pipe(gulp.dest(distDir()));
+});
+
 gulp.task('package.json', function (done) {
   fs.writeJson(distDir('package.json'), json, {
     spaces: 2,
@@ -52,6 +60,7 @@ gulp.task('build', gulp.series(function (done) {
   done();
 }, 'mandoc.config.js',
   'package.json',
+  'docs',
   'layout-dir',
   'js-files',
   'less-files'));
