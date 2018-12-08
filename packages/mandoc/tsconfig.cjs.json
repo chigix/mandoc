@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "sourceRoot": "../src",
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "./dist/cjs",
+  },
+  "files": [
+    "src/bin/mandoc.ts",
+    "src/index.ts",
+    "src/interfaces.ts",
+    "src/paths.const.ts",
+    "src/public_api.ts",
+  ]
+}

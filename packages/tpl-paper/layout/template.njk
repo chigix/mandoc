@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @page {
+            size: {{ print.paperWidth }}mm {{ print.paperHeight }}mm;
+            margin: 2cm;
+        }
+        {% include normalizeCSS %}
+        {% include "style.css" %}
+    </style>
+    <link rel="stylesheet" href="file:///{{ highlightJs }}">
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+    </script>
+</head>
+<body>
+    <article class="{{ "print-two-column" if twoColumnLayout }} count-from-h2">
+        {{ separateTitle(body) | safe }}
+        {# {{ body }} #}
+    </article>
+    <script type="text/javascript" src="file:///{{ mathjax }}?config=TeX-AMS_HTML-full"></script>
+</body>
+</html>

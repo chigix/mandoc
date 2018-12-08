@@ -1,0 +1,6 @@
+{
+    "main": "./layout/template.njk",
+    "cssBaseDir": "./source",
+    "jsBaseDir": "./source",
+    "preferCssPageSize": true
+}

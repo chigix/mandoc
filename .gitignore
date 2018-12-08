@@ -13,6 +13,9 @@ node_modules
 npm-debug.log
 dist
 
+# lerna
+packages/*/dist
+
 # misc
 _gh_pages
 bower_components

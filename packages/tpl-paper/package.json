@@ -1,0 +1,42 @@
+{
+  "name": "mandoc-template-paper",
+  "version": "1.0.0",
+  "description": "Mandoc Template for Paper Style.",
+  "author": "Richard Lea <chigix@zoho.com>",
+  "homepage": "https://github.com/chigix/mandoc/tree/master/packages/tpl-paper#readme",
+  "license": "MIT",
+  "main": "./dist/mandoc.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chigix/mandoc.git"
+  },
+  "scripts": {
+    "build": "npm run build:tpl-paper",
+    "build:tpl-paper": "gulp build",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "keywords": [
+    "mandoc",
+    "template",
+    "paper",
+    "markdown"
+  ],
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "bugs": {
+    "url": "https://github.com/chigix/mandoc/issues"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "highlight.js": "^9.13.1",
+    "mathjax": "^2.7.5",
+    "normalize.css": "^8.0.0",
+    "slash": "^2.0.0",
+    "uniqid": "^5.0.3"
+  }
+}

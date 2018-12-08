@@ -1,37 +1,40 @@
 {
-    "extends": "./tsconfig/tsconfig.base.json",
-    "compilerOptions": {
-        "types": [
-            "node",
-            "jest",
-        ],
-        "lib": [
-            "es2015",
-            "es2017",
-            "dom",
-        ],
-        "baseUrl": ".",
-        "paths": {
-            "mandoc": [
-                "./src/index"
-            ],
-            "mandoc/*": [
-                "./src/*"
-            ],
-            "mandoc-test": [
-                "./test"
-            ],
-            "mandoc-test/*": [
-                "./test/*"
-            ],
-            "mandoc-tpl/*": [
-                "./templates/*"
-            ]
-        }
-    },
-    "include": [
-        "src",
-        "build",
-        "test"
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "types": [
+      "node",
+      "jest",
     ],
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom",
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "mandoc": [
+        "./packages/mandoc/src/index"
+      ],
+      "mandoc/*": [
+        "./packages/mandoc/src/*"
+      ],
+      "mandoc-test": [
+        "./packages/mandoc/test"
+      ],
+      "mandoc-test/*": [
+        "./packages/mandoc/test/*"
+      ]
+    }
+  },
+  "exclude": [
+    "./node_modules",
+    "./packages/mandoc/dist",
+    "./packages/mandoc/node_modules",
+    "./packages/remarkable-front-matter/node_modules",
+    "./packages/tpl-keiyaku/node_modules",
+    "./packages/tpl-paper/dist",
+    "./packages/tpl-paper/node_modules",
+  ]
 }
