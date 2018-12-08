@@ -1,6 +1,6 @@
 {
   "name": "mandoc-template-paper",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "Mandoc Template for Paper Style.",
   "author": "Richard Lea <chigix@zoho.com>",
   "homepage": "https://github.com/chigix/mandoc/tree/master/packages/tpl-paper#readme",
