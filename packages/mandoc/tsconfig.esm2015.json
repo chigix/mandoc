@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "sourceRoot": "../src",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "outDir": "./dist/esm2015",
+  },
+  "files": [
+    "src/bin/mandoc.ts",
+    "src/index.ts",
+    "src/interfaces.ts",
+    "src/paths.const.ts",
+    "src/public_api.ts",
+  ]
+}

@@ -3,8 +3,7 @@
 import chalk from 'chalk';
 import * as program from 'commander';
 import * as fs from 'fs';
-// TODO: not suitable for compiling to esm5 esm2015 and types packages
-import _ = require('lodash');
+import * as _ from 'lodash';
 import * as path from 'path';
 import * as stream from 'stream';
 import * as through from 'through2';

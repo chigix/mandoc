@@ -5,7 +5,7 @@
   "author": "Richard Lea <chigix@zoho.com>",
   "homepage": "https://github.com/chigix/mandoc",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/package/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chigix/mandoc.git"
@@ -13,7 +13,7 @@
   "scripts": {
     "mandoc:mandoc": "ts-node  --project ./tsconfig.cjs.json ./src/bin/mandoc.ts",
     "build": "npm run build:mandoc",
-    "build:mandoc": "npm-run-all ~~clean-dist ~~compile-dist-cjs ~~compile-dist-types ~~copy-sources ~~generate-package",
+    "build:mandoc": "npm-run-all ~~clean-dist ~~compile-dist-cjs ~~compile-dist-esm5 ~~compile-dist-esm2015 ~~compile-dist-types ~~copy-sources ~~generate-package",
     "~~clean-dist": "shx rm -rf ./dist",
     "~~compile-dist-cjs": "tsc -p ./tsconfig.cjs.json",
     "~~compile-dist-esm5": "tsc -p ./tsconfig.esm5.json",

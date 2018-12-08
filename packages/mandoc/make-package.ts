@@ -69,11 +69,27 @@ sh.mkdir('-p', PKG_ROOT);
 // Copy over the sources
 sh.cp('-R', path.resolve(__dirname, 'src'), SRC_ROOT_PKG);
 
-fs.copySync(CJS_ROOT, CJS_PKG);
+fs.copySync(CJS_ROOT + 'src/', CJS_PKG);
+
+// Copy Special Files
+sh.cp(CJS_ROOT + 'paths.const*', CJS_PKG);
+
+klawSync(path.resolve(__dirname, 'src'), {
+  traverseAll: true,
+  filter: file => file.path.endsWith('.js'),
+}).map(f => f.path)
+  .forEach(fPath => {
+    // Get relative path from map file to source file
+    fs.copySync(fPath, CJS_PKG + slash(path.relative(
+      path.resolve(path.resolve(__dirname, 'src')),
+      fPath,
+    )));
+  });
 
 // Clean up the source maps for CJS sources
 Helper.cleanSourceMapRoot(PKG_ROOT, SRC_ROOT_PKG);
-fs.copySync(TYPE_ROOT, TYPE_PKG);
+fs.copySync(TYPE_ROOT + 'src/', TYPE_PKG);
+sh.cp(TYPE_ROOT + 'paths.const*', TYPE_PKG);
 
 fs.writeJsonSync(PKG_ROOT + 'package.json', rootPackageJson, { spaces: 2 });
 sh.find(CJS_PKG + 'bin/').filter(file => file.match(/\.js$/))
