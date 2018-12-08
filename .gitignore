@@ -15,6 +15,7 @@ dist
 
 # lerna
 packages/*/dist
+lerna-debug.log
 
 # misc
 _gh_pages
