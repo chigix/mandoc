@@ -1,5 +1,7 @@
 # How to Contribute
 
+[![devDependencies Status](https://david-dm.org/chigix/mandoc/dev-status.svg)](https://david-dm.org/chigix/mandoc?type=dev)
+
 ## Workflow
 
 _Before_ creating new commits or submitting a pull request, please make sure the

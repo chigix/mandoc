@@ -8,4 +8,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **mandoc-template-paper:** add documents ([13dd84a](https://github.com/chigix/mandoc/commit/13dd84a))
+* **mandoc-template-paper:** add documents ([fed3fa7](https://github.com/chigix/mandoc/commit/fed3fa7))
