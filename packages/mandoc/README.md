@@ -1,8 +1,6 @@
 # ManDoc
 
 [![NPM version](https://badge.fury.io/js/mandoc.svg)](http://badge.fury.io/js/mandoc)
-[![dependencies Status](https://david-dm.org/chigix/mandoc/status.svg)](https://david-dm.org/chigix/mandoc)
-[![devDependencies Status](https://david-dm.org/chigix/mandoc/dev-status.svg)](https://david-dm.org/chigix/mandoc?type=dev)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)

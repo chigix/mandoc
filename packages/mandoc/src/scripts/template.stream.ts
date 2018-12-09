@@ -1,4 +1,3 @@
-import * as less from 'less';
 import * as _ from 'lodash';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
@@ -60,10 +59,10 @@ export function NJK_STREAM_FACTORY(
  */
 export function LESS_STREAM_FACTORY(tplCtx: TemplateContext) {
   return through({ objectMode: true }, function (ref: Style, enc, flush) {
-    less.render(ref.text, ref).then(output => {
-      flush(undefined, output.css);
-    }, error => {
-      flush(error);
-    });
+    // less.render(ref.text, ref).then(output => {
+    //   flush(undefined, output.css);
+    // }, error => {
+    //   flush(error);
+    // });
   });
 }
