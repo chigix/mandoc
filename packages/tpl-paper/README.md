@@ -8,4 +8,4 @@ This template support two-column layout with figures floating to the top and
 bottom. Counter Numbers would also be prefixed automatically to each heading
 titles.
 
-![welcome](./welcome.png)
+![welcome](https://github.com/chigix/mandoc/raw/master/packages/tpl-paper/welcome.png)
