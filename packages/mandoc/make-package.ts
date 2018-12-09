@@ -55,9 +55,8 @@ const rootPackageJson = _.assign({}, pkg, {
     // TODO: mandoc-gen for generating template package since 2.0+
     // 'mandoc-gen': './bin/mandoc-gen',
   },
-  // TODO: Try in future commits, referring to the practice in rxjs repository.
-  // module: './_esm5/index.js',
-  // es2015: './_esm2015/index.js',
+  module: './_esm5/index.js',
+  es2015: './_esm2015/index.js',
 });
 delete rootPackageJson.devDependencies;
 delete rootPackageJson.scripts;
@@ -90,6 +89,12 @@ klawSync(path.resolve(__dirname, 'src'), {
 Helper.cleanSourceMapRoot(PKG_ROOT, SRC_ROOT_PKG);
 fs.copySync(TYPE_ROOT + 'src/', TYPE_PKG);
 sh.cp(TYPE_ROOT + 'paths.const*', TYPE_PKG);
+fs.copySync(ESM5_ROOT + 'src/', ESM5_PKG);
+sh.cp(ESM5_ROOT + 'paths.const*', ESM5_PKG);
+Helper.cleanSourceMapRoot(ESM5_PKG, SRC_ROOT_PKG);
+fs.copySync(ESM2015_ROOT + 'src/', ESM2015_PKG);
+sh.cp(ESM2015_ROOT + 'paths.const*', ESM2015_PKG);
+Helper.cleanSourceMapRoot(ESM2015_PKG, SRC_ROOT_PKG);
 
 fs.writeJsonSync(PKG_ROOT + 'package.json', rootPackageJson, { spaces: 2 });
 sh.find(CJS_PKG + 'bin/').filter(file => file.match(/\.js$/))
