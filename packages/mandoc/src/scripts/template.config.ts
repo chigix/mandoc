@@ -103,6 +103,10 @@ function resolveConfigPathByTraversing(
   pathToResolve: string, initialPath: string, cwd: string)
   : Path {
 
+  if (!fs.existsSync(pathToResolve)) {
+    throw new InvalidTemplatePackageError(`Cannot find template '${pathToResolve}'.`);
+  }
+
   const package_json_file = path.resolve(pathToResolve, 'package.json');
   if (isFile(package_json_file)) {
     try {
