@@ -1,8 +1,8 @@
+import { FIXTURES_DIR } from '@fixtures';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
 import * as path from 'path';
 import * as pptr from 'puppeteer';
-import { TEST_FIXTURE } from './constants';
 const slash = require('slash');
 
 test('Request a Web Page', done => {
@@ -24,7 +24,7 @@ test('Request a Local Page', async () => {
   const browser = await pptr.launch();
   const page = await browser.newPage();
   const response = await page.goto(
-    'file:///' + path.join(TEST_FIXTURE, './ipsum-in-template.html'),
+    'file:///' + path.join(FIXTURES_DIR, './ipsum-in-template.html'),
   );
   expect(response).not.toBeNull();
   await page.addScriptTag({ url: 'file:///' + slash(require.resolve('jquery')) });

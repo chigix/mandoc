@@ -1,7 +1,8 @@
+import { TPL_TEST_FIXTURE } from '@fixtures';
 import * as _ from 'lodash';
 import { getConfig } from 'mandoc/scripts/template.config';
 import * as path from 'path';
-import { TPL_TEST_FIXTURE } from './constants';
+const slash = require('slash');
 const builtin_paper_cfg = require.resolve('mandoc-template-paper');
 
 describe('getConfig', () => {
@@ -23,7 +24,7 @@ describe('getConfig', () => {
         paperHeight: 446,
       },
     );
-    expect(real_ctx.rootDir).toBe(path.resolve(TPL_TEST_FIXTURE, 'import-render-case'));
+    expect(real_ctx.rootDir).toBe(slash(path.resolve(TPL_TEST_FIXTURE, 'import-render-case')));
     expect(real_ctx.main).toBe('./layout/template.njk');
     expect(real_ctx.cssBaseDir).toBe('./source');
   });
@@ -31,7 +32,7 @@ describe('getConfig', () => {
     expect(() => getConfig('unknown-package-name', {
       paperWidth: 446,
       paperHeight: 446,
-    })).toThrowError('Could not find a config file based on provided values:');
+    })).toThrowError('Cannot find template ');
   });
   it('Throws Error for no available mandoc.config file', () => {
     expect(function () {

@@ -11,7 +11,8 @@ module.exports = {
     "testRegex": "((\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleNameMapper": {
         "^mandoc/(.*)": "<rootDir>/src/$1",
-        "^mandoc-test/(.*)": "<rootDir>/test/$1"
+        "^mandoc-test/(.*)": "<rootDir>/test/$1",
+        "^@fixtures": "<rootDir>/../../fixtures",
     },
     "moduleFileExtensions": [
         "ts",

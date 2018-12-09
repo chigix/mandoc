@@ -1,10 +1,7 @@
+import { RENDER_CASE_FIXTURE, TPL_TEST_FIXTURE } from '@fixtures';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
-import {
-  RENDER_CASE_FIXTURE,
-  TPL_TEST_FIXTURE,
-} from './constants';
 const NjkLoaders = require('mandoc/lib/njk-loader');
 
 function getNJKEnv(tplDir: string | string[]) {

@@ -14,6 +14,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@fixtures": [
+        "./fixtures/index"
+      ],
       "mandoc": [
         "./packages/mandoc/src/index"
       ],

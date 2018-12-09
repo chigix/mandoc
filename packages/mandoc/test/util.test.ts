@@ -1,22 +1,29 @@
 import { PrintContext } from 'mandoc/interfaces';
 import { generatePrintContext, urlFor } from 'mandoc/lib/util';
-import { TEMPLATE_DIR } from 'mandoc/paths.const';
 import * as path from 'path';
+
+const slash: (path: string) => string = require('slash');
+
+const TEMPLATE_DIR = path.dirname(require.resolve('mandoc-template-paper'));
+
+test('TEMPLATE_DIR', () => {
+  expect(slash(TEMPLATE_DIR).endsWith('packages/tpl-paper/dist')).toBe(true);
+});
 
 test('Basic urlFor cases', () => {
   expect(urlFor('/main.js', {
-    baseDir: path.join(TEMPLATE_DIR, 'default/layout'),
-    rootDir: path.join(TEMPLATE_DIR, 'default/source'),
+    baseDir: path.join(TEMPLATE_DIR, 'layout'),
+    rootDir: path.join(TEMPLATE_DIR, 'source'),
   })).toBe('/main.js');
   expect(urlFor('style.css', {
-    baseDir: path.join(TEMPLATE_DIR, 'default/layout'),
-    rootDir: path.join(TEMPLATE_DIR, 'default/source'),
+    baseDir: path.join(TEMPLATE_DIR, 'layout'),
+    rootDir: path.join(TEMPLATE_DIR, 'source'),
   })).toBe('/style.css');
   expect(urlFor('https://cdnjs.cloudflare.com'
     + '/ajax/libs/mathjax/2.7.1/MathJax.js'
     + '?config=TeX-AMS_HTML&delayStartupUntil=configured', {
-      baseDir: path.join(TEMPLATE_DIR, 'default/layout'),
-      rootDir: path.join(TEMPLATE_DIR, 'default/source'),
+      baseDir: path.join(TEMPLATE_DIR, 'layout'),
+      rootDir: path.join(TEMPLATE_DIR, 'source'),
     })).toBe('https://cdnjs.cloudflare.com'
       + '/ajax/libs/mathjax/2.7.1/MathJax.js'
       + '?config=TeX-AMS_HTML&delayStartupUntil=configured');
