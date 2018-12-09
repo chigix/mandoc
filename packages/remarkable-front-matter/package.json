@@ -1,0 +1,34 @@
+{
+  "name": "remarkable-front-matter",
+  "version": "1.0.0",
+  "description": "YAML front matter block support for Remarkable",
+  "keywords": [
+    "remarkable",
+    "meta",
+    "metadata",
+    "markdown",
+    "parser",
+    "yaml",
+    "front",
+    "matter",
+    "front-matter"
+  ],
+  "author": "Richard Lea <chigix@zoho.com>",
+  "homepage": "https://github.com/chigix/mandoc/tree/master/packages/remarkable-front-matter#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chigix/mandoc.git"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "test": "jest --config ./jest.config.json"
+  },
+  "bugs": {
+    "url": "https://github.com/chigix/mandoc/issues"
+  },
+  "dependencies": {
+    "js-yaml": "^3.12.0"
+  }
+}

@@ -16,6 +16,7 @@ export interface DocumentDescriptor {
     email?: string,
     address?: string,
     desc?: string,
+    url?: string,
   }[];
   body: string;
   bibliography?: {}[];

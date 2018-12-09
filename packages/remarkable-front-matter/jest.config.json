@@ -1,0 +1,24 @@
+{
+  "verbose": true,
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testMatch": [
+    "**/__tests__/**/*.ts?(x)",
+    "**/?(*.)+(spec|test).ts?(x)"
+  ],
+  "moduleNameMapper": {
+    "^@fixtures": "<rootDir>/../../fixtures"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ]
+}
