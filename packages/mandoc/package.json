@@ -1,6 +1,6 @@
 {
   "name": "mandoc",
-  "version": "1.2.1-beta.0",
+  "version": "1.2.1-beta.1",
   "description": "Yet another MD document converter.",
   "author": "Richard Lea <chigix@zoho.com>",
   "homepage": "https://github.com/chigix/mandoc",
@@ -52,7 +52,7 @@
     "nunjucks": "^3.1.4",
     "puppeteer": "^1.9.0",
     "remarkable": "^1.7.1",
-    "remarkable-front-matter": "^1.0.1-beta.0",
+    "remarkable-front-matter": "^1.0.1-beta.1",
     "requireg": "^0.2.1",
     "rxjs": "^6.3.3",
     "slash": "^2.0.0",

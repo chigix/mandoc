@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1-beta.1](https://github.com/chigix/mandoc/compare/mandoc@1.2.1-beta.0...mandoc@1.2.1-beta.1) (2018-12-10)
+
+
+### Bug Fixes
+
+* **mandoc:** support processing front-matter block in markdown file ([c8fface](https://github.com/chigix/mandoc/commit/c8fface))
+
+
+
+
+
 ## 1.2.1-beta.0 (2018-12-10)
 
 
