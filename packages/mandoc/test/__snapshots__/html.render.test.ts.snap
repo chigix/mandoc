@@ -1,0 +1,737 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic Template Rendering 1`] = `
+"<h1>A First Level Header</h1>
+<h2>A Second Level Header</h2>
+<h3>A Third Level Header</h3>
+<h4>A Fourth Level Header</h4>
+<h5>A Fifth Level Header</h5>
+<h6>A Sixth Level Header</h6>
+<p>This is a paragraph. Cupcake ipsum dolor sit amet. Tiramisu liquorice gummies powder. Biscuit pastry pastry cake candy gummies carrot cake gingerbread. Gummi bears tart cupcake bonbon sugar plum biscuit. Icing marzipan tootsie roll. Pie gingerbread dragée wypas cookie. Faworki bonbon topping sweet soufflé jelly.</p>
+<p>And another  paragraph. Jelly beans tootsie roll fruitcake toffee wypas chupa chups pudding. Soufflé muffin halvah powder sugar plum cake. Toffee cookie biscuit faworki pastry. Bonbon gummi bears topping caramels marshmallow. Chupa chups candy canes toffee. Powder powder candy canes pastry. Tootsie roll marshmallow powder.</p>
+<p><em>These words are emphasized</em>
+<em>Also these words are emphasized</em></p>
+<p><strong>These words are strong emphasized</strong>
+<strong>Also these words are strong emphasized</strong></p>
+<blockquote>
+<p>This is a very simple blockquote</p>
+</blockquote>
+<ul>
+<li>This</li>
+<li>is</li>
+<li>an</li>
+<li>unordered</li>
+<li>list.</li>
+</ul>
+<p>And...</p>
+<ol>
+<li>This</li>
+<li>is</li>
+<li>an</li>
+<li>ordered</li>
+<li>list.</li>
+</ol>
+<p><a href=\\"http://example.com/\\">This is an example link</a>.
+<a href=\\"http://example.com/\\" title=\\"¡Buenos días!\\">This is an example link with a title</a>.</p>
+<p>This is a image
+<img src=\\"http://placehold.it/350x150\\" alt=\\"Alt\\" title=\\"I'm an image\\"></p>
+<p><code>this is a line of code</code></p>
+<pre><code>And these are several lines of code. Pudding sesame snaps cupcake bonbon cupcake. Icing macaroon donut.
+
+More code. Donut cheesecake chocolate cake. Tart pudding wafer dessert chocolate bar jelly-o apple pie dessert. Carrot cake apple pie pie liquorice oat cake lollipop pastry caramels. Jelly-o sesame snaps gummi bears.
+
+And more. Sugar plum lemon drops chupa chups chocolate pastry. Faworki applicake applicake brownie topping liquorice chocolate liquorice icing. Cake pudding pudding cake candy sugar plum soufflé.\`
+</code></pre>
+<pre><code class=\\"language-js\\"><span class=\\"hljs-keyword\\">var</span> Remarkable = <span class=\\"hljs-built_in\\">require</span>(<span class=\\"hljs-string\\">'remarkable'</span>);
+<span class=\\"hljs-keyword\\">var</span> hljs       = <span class=\\"hljs-built_in\\">require</span>(<span class=\\"hljs-string\\">'highlight.js'</span>) <span class=\\"hljs-comment\\">// https://highlightjs.org/</span>
+
+<span class=\\"hljs-comment\\">// Actual default values</span>
+<span class=\\"hljs-keyword\\">var</span> md = <span class=\\"hljs-keyword\\">new</span> Remarkable({
+  <span class=\\"hljs-attr\\">highlight</span>: <span class=\\"hljs-function\\"><span class=\\"hljs-keyword\\">function</span> (<span class=\\"hljs-params\\">str, lang</span>) </span>{
+    <span class=\\"hljs-keyword\\">if</span> (lang &amp;&amp; hljs.getLanguage(lang)) {
+      <span class=\\"hljs-keyword\\">try</span> {
+        <span class=\\"hljs-keyword\\">return</span> hljs.highlight(lang, str).value;
+      } <span class=\\"hljs-keyword\\">catch</span> (err) {}
+    }
+
+    <span class=\\"hljs-keyword\\">try</span> {
+      <span class=\\"hljs-keyword\\">return</span> hljs.highlightAuto(str).value;
+    } <span class=\\"hljs-keyword\\">catch</span> (err) {}
+
+    <span class=\\"hljs-keyword\\">return</span> <span class=\\"hljs-string\\">''</span>; <span class=\\"hljs-comment\\">// use external default escaping</span>
+  }
+});
+</code></pre>
+<p>And that's all ...
+This is an <strong>extremely simple and basic</strong> guide. To understand a lot better this kind of dark magic called markdown, logically I recommend the official wiki of the creator. Go, run, jump to <a href=\\"http://daringfireball.net/projects/markdown/\\">the site of John Gruber</a>.</p>
+"
+`;
+
+exports[`Basic Template Rendering 2`] = `
+"<h1>建物賃貸借契約書</h1>
+<p>賃借人（以下、「甲」という。）と賃貸人（以下、「乙」という。）は、乙はその所有する下記の建物（以下、「本件建物」という。）について、以下のとおり建物賃貸借契約を締結する。</p>
+<ul>
+<li>建物の所在: ◯◯県◯◯市◯◯</li>
+</ul>
+<h2>使用目的</h2>
+<p>甲は本件物件の使用に際しては、居住にのみ使用し、その他の目的に使用してはならない。</p>
+<h2>期間</h2>
+<p>賃貸借期間は20XX年XX月XX日より20XX年XX月XX日までの満2ヵ年とする。但し、期間満了の6ヵ月前までに、本契約当事者のいずれかから書面による解約の通知がなされないときは、本契約は期間満了から更に1ヵ年自動的に延長されるものとし、以後も同様とする。</p>
+<h2>賃料</h2>
+<p>賃料は1ヶ月金XX万円とし、甲は、毎月末日までにその翌月分を乙の指定する銀行口座に振り込むものとする。但し、1ヵ月に満たない月の賃料は、日割計算とする。</p>
+<h2>共益費</h2>
+<p>甲は、共益費として賃借物件の使用上賃借人の負担となるべき諸経費を、賃料のほかに乙に支払わなければならない。</p>
+<h2>敷金</h2>
+<p>甲は、本契約締結時に、敷金として金XX万円を、本契約成立時に乙に預け入れる。ただし、敷金には利息は付さないものとし、本契約の解約による物件の明渡し時に甲に返還するものとする。</p>
+<h2>賃借権の譲渡等の禁止</h2>
+<p>甲は次の行為をしてはならない。</p>
+<ol>
+<li>賃借権の譲渡、本件建物の転貸</li>
+<li>本件建物を第三者の使用に供すること</li>
+</ol>
+<h2>修繕費の負担</h2>
+<p>乙は、本件建物が甲の使用目的に適するように維持保全に必要な修繕を行なう。</p>
+<p>甲は、建具・造作、給排水施設、壁等、甲による日常の使用によって被る損耗について修理費用を負担する。</p>
+<p>費用の負担につき疑義のあるときは、甲乙別途協議のうえ決定する。</p>
+<hr>
+<p>20XX年XX月XX日</p>
+<h4>甲</h4>
+<ul>
+<li>住所:</li>
+<li>氏名:</li>
+</ul>
+<h4>乙</h4>
+<ul>
+<li>住所:</li>
+<li>氏名:</li>
+</ul>
+"
+`;
+
+exports[`Basic Template Rendering 3`] = `
+"<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=\\"utf-8\\" />
+    <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">
+    <title>Report</title>
+    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+    <style>
+        @page {
+            size: 446mm 446mm;
+            margin: 2cm;
+        }
+        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the \`main\` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on \`h1\` elements within \`section\` and
+ * \`article\` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd \`em\` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd \`em\` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent \`sub\` and \`sup\` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type=\\"button\\"],
+[type=\\"reset\\"],
+[type=\\"submit\\"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type=\\"button\\"]::-moz-focus-inner,
+[type=\\"reset\\"]::-moz-focus-inner,
+[type=\\"submit\\"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type=\\"button\\"]:-moz-focusring,
+[type=\\"reset\\"]:-moz-focusring,
+[type=\\"submit\\"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from \`fieldset\` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    \`fieldset\` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type=\\"checkbox\\"],
+[type=\\"radio\\"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type=\\"number\\"]::-webkit-inner-spin-button,
+[type=\\"number\\"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type=\\"search\\"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type=\\"search\\"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to \`inherit\` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+        body .count-from-h1 {
+  counter-reset: h1counter;
+}
+body .count-from-h1 h1 {
+  counter-reset: h2counter;
+}
+body .count-from-h1 h1:before {
+  counter-increment: h1counter;
+  content: counter(h1counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h1 h1.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h1 h2 {
+  counter-reset: h3counter;
+}
+body .count-from-h1 h2:before {
+  counter-increment: h2counter;
+  content: counter(h1counter) '.' counter(h2counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h1 h2.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h1 h3 {
+  counter-reset: h4counter;
+}
+body .count-from-h1 h3:before {
+  counter-increment: h3counter;
+  content: counter(h1counter) '.' counter(h2counter) '.' counter(h3counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h1 h3.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h1 h4 {
+  counter-reset: h5counter;
+}
+body .count-from-h1 h4:before {
+  counter-increment: h4counter;
+  content: counter(h1counter) '.' counter(h2counter) '.' counter(h3counter) '.' counter(h4counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h1 h4.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h1 h5 {
+  counter-reset: h6counter;
+}
+body .count-from-h1 h5:before {
+  counter-increment: h5counter;
+  content: counter(h1counter) '.' counter(h2counter) '.' counter(h3counter) '.' counter(h4counter) '.' counter(h5counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h1 h5.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h1 h6 {
+  counter-reset: h7counter;
+}
+body .count-from-h1 h6:before {
+  counter-increment: h6counter;
+  content: counter(h1counter) '.' counter(h2counter) '.' counter(h3counter) '.' counter(h4counter) '.' counter(h5counter) '.' counter(h6counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h1 h6.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h2 {
+  counter-reset: h2counter;
+}
+body .count-from-h2 h2 {
+  counter-reset: h3counter;
+}
+body .count-from-h2 h2:before {
+  counter-increment: h2counter;
+  content: counter(h2counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h2 h2.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h2 h3 {
+  counter-reset: h4counter;
+}
+body .count-from-h2 h3:before {
+  counter-increment: h3counter;
+  content: counter(h2counter) '.' counter(h3counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h2 h3.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h2 h4 {
+  counter-reset: h5counter;
+}
+body .count-from-h2 h4:before {
+  counter-increment: h4counter;
+  content: counter(h2counter) '.' counter(h3counter) '.' counter(h4counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h2 h4.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h2 h5 {
+  counter-reset: h6counter;
+}
+body .count-from-h2 h5:before {
+  counter-increment: h5counter;
+  content: counter(h2counter) '.' counter(h3counter) '.' counter(h4counter) '.' counter(h5counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h2 h5.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+body .count-from-h2 h6 {
+  counter-reset: h7counter;
+}
+body .count-from-h2 h6:before {
+  counter-increment: h6counter;
+  content: counter(h2counter) '.' counter(h3counter) '.' counter(h4counter) '.' counter(h5counter) '.' counter(h6counter)'.\\\\0000a0\\\\0000a0';
+}
+body .count-from-h2 h6.no-count:before {
+  content: none;
+  counter-increment: none;
+}
+/** For screen preview **/
+@media screen {
+  article {
+    width: 100%;
+    max-width: 960px;
+    margin: 5px auto;
+  }
+}
+/** Fix for Chrome issue #273306 **/
+@media print {
+  body.A3.landscape {
+    width: 420mm;
+  }
+  body.A3,
+  body.A4.landscape {
+    width: 297mm;
+  }
+  body.A4,
+  body.A5.landscape {
+    width: 210mm;
+  }
+  body.A5 {
+    width: 148mm;
+  }
+  body.letter,
+  body.legal {
+    width: 216mm;
+  }
+  body.letter.landscape {
+    width: 280mm;
+  }
+  body.legal.landscape {
+    width: 357mm;
+  }
+}
+article {
+  font-size: 12pt;
+  font-family: -apple-system, \\"BlinkMacSystemFont\\", \\"Helvetica Neue\\", Helvetica, \\"Arial\\", \\"ヒラギノ角ゴ ProN W3\\", \\"Hiragino Kaku Gothic ProN\\", \\"メイリオ\\", Meiryo, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\", \\"Noto Color Emoji\\";
+  hyphens: auto;
+  /* turn on hyphenation */
+  text-align: justify;
+  /* and justification */
+}
+article.print-two-column {
+  columns: 2;
+  column-gap: 0.25in;
+}
+article section.lead {
+  column-span: all;
+  text-align: center;
+  margin: 2em 0;
+  font-style: italic;
+}
+article section.lead h1 {
+  font-style: normal;
+}
+
+    </style>
+    <link rel=\\"stylesheet\\" href=\\"file:///C:\\\\Users\\\\chigi\\\\Projects\\\\mandoc\\\\packages\\\\tpl-paper\\\\node_modules\\\\highlight.js\\\\styles\\\\atelier-lakeside-light.css\\">
+    <script type=\\"text/x-mathjax-config\\">
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\\\\\\\(','\\\\\\\\)']]}
+    });
+    </script>
+</head>
+<body>
+    <article class=\\" count-from-h2\\">
+        <section id=\\"jpikr1tr\\" class=\\"lead\\"><h1>A First Level Header</h1></section>
+<h2>A Second Level Header</h2>
+<h3>A Third Level Header</h3>
+<h4>A Fourth Level Header</h4>
+<h5>A Fifth Level Header</h5>
+<h6>A Sixth Level Header</h6>
+<p>This is a paragraph. Cupcake ipsum dolor sit amet. Tiramisu liquorice gummies powder. Biscuit pastry pastry cake candy gummies carrot cake gingerbread. Gummi bears tart cupcake bonbon sugar plum biscuit. Icing marzipan tootsie roll. Pie gingerbread drag&#xE9;e wypas cookie. Faworki bonbon topping sweet souffl&#xE9; jelly.</p>
+<p>And another  paragraph. Jelly beans tootsie roll fruitcake toffee wypas chupa chups pudding. Souffl&#xE9; muffin halvah powder sugar plum cake. Toffee cookie biscuit faworki pastry. Bonbon gummi bears topping caramels marshmallow. Chupa chups candy canes toffee. Powder powder candy canes pastry. Tootsie roll marshmallow powder.</p>
+<p><em>These words are emphasized</em>
+<em>Also these words are emphasized</em></p>
+<p><strong>These words are strong emphasized</strong>
+<strong>Also these words are strong emphasized</strong></p>
+<blockquote>
+<p>This is a very simple blockquote</p>
+</blockquote>
+<ul>
+<li>This</li>
+<li>is</li>
+<li>an</li>
+<li>unordered</li>
+<li>list.</li>
+</ul>
+<p>And...</p>
+<ol>
+<li>This</li>
+<li>is</li>
+<li>an</li>
+<li>ordered</li>
+<li>list.</li>
+</ol>
+<p><a href=\\"http://example.com/\\">This is an example link</a>.
+<a href=\\"http://example.com/\\" title=\\"&#xA1;Buenos d&#xED;as!\\">This is an example link with a title</a>.</p>
+<p>This is a image
+<img src=\\"http://placehold.it/350x150\\" alt=\\"Alt\\" title=\\"I&apos;m an image\\"></p>
+<p><code>this is a line of code</code></p>
+<pre><code>And these are several lines of code. Pudding sesame snaps cupcake bonbon cupcake. Icing macaroon donut.
+
+More code. Donut cheesecake chocolate cake. Tart pudding wafer dessert chocolate bar jelly-o apple pie dessert. Carrot cake apple pie pie liquorice oat cake lollipop pastry caramels. Jelly-o sesame snaps gummi bears.
+
+And more. Sugar plum lemon drops chupa chups chocolate pastry. Faworki applicake applicake brownie topping liquorice chocolate liquorice icing. Cake pudding pudding cake candy sugar plum souffl&#xE9;.\`
+</code></pre>
+<pre><code class=\\"language-js\\"><span class=\\"hljs-keyword\\">var</span> Remarkable = <span class=\\"hljs-built_in\\">require</span>(<span class=\\"hljs-string\\">&apos;remarkable&apos;</span>);
+<span class=\\"hljs-keyword\\">var</span> hljs       = <span class=\\"hljs-built_in\\">require</span>(<span class=\\"hljs-string\\">&apos;highlight.js&apos;</span>) <span class=\\"hljs-comment\\">// https://highlightjs.org/</span>
+
+<span class=\\"hljs-comment\\">// Actual default values</span>
+<span class=\\"hljs-keyword\\">var</span> md = <span class=\\"hljs-keyword\\">new</span> Remarkable({
+  <span class=\\"hljs-attr\\">highlight</span>: <span class=\\"hljs-function\\"><span class=\\"hljs-keyword\\">function</span> (<span class=\\"hljs-params\\">str, lang</span>) </span>{
+    <span class=\\"hljs-keyword\\">if</span> (lang &amp;&amp; hljs.getLanguage(lang)) {
+      <span class=\\"hljs-keyword\\">try</span> {
+        <span class=\\"hljs-keyword\\">return</span> hljs.highlight(lang, str).value;
+      } <span class=\\"hljs-keyword\\">catch</span> (err) {}
+    }
+
+    <span class=\\"hljs-keyword\\">try</span> {
+      <span class=\\"hljs-keyword\\">return</span> hljs.highlightAuto(str).value;
+    } <span class=\\"hljs-keyword\\">catch</span> (err) {}
+
+    <span class=\\"hljs-keyword\\">return</span> <span class=\\"hljs-string\\">&apos;&apos;</span>; <span class=\\"hljs-comment\\">// use external default escaping</span>
+  }
+});
+</code></pre>
+<p>And that&apos;s all ...
+This is an <strong>extremely simple and basic</strong> guide. To understand a lot better this kind of dark magic called markdown, logically I recommend the official wiki of the creator. Go, run, jump to <a href=\\"http://daringfireball.net/projects/markdown/\\">the site of John Gruber</a>.</p>
+
+        
+    </article>
+    <script type=\\"text/javascript\\" src=\\"file:///C:\\\\Users\\\\chigi\\\\Projects\\\\mandoc\\\\packages\\\\tpl-paper\\\\node_modules\\\\mathjax\\\\MathJax.js?config=TeX-AMS_HTML-full\\"></script>
+</body>
+</html>"
+`;

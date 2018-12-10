@@ -1,4 +1,4 @@
-import { FIXTURES_DIR } from '@fixtures';
+import { fixture } from '@fixtures';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
 import * as path from 'path';
@@ -24,7 +24,7 @@ test('Request a Local Page', async () => {
   const browser = await pptr.launch();
   const page = await browser.newPage();
   const response = await page.goto(
-    'file:///' + path.join(FIXTURES_DIR, './ipsum-in-template.html'),
+    'file:///' + fixture('localpage-sample.html'),
   );
   expect(response).not.toBeNull();
   await page.addScriptTag({ url: 'file:///' + slash(require.resolve('jquery')) });

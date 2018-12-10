@@ -23,6 +23,7 @@
     "~~copy-sources": "shx cp -r ./src ./dist/src",
     "test": "npm run test:mandoc",
     "test:mandoc": "jest",
+    "test-update": "jest --updateSnapshot",
     "test-coverage": "jest --coverage",
     "lint": "npm run lint:mandoc",
     "lint:mandoc": "tslint -c ../../tslint.json --project ./tsconfig.cjs.json \"src/**/*.ts\""
@@ -51,6 +52,7 @@
     "nunjucks": "^3.1.4",
     "puppeteer": "^1.9.0",
     "remarkable": "^1.7.1",
+    "remarkable-front-matter": "^1.0.1-beta.0",
     "requireg": "^0.2.1",
     "rxjs": "^6.3.3",
     "slash": "^2.0.0",

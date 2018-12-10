@@ -1,4 +1,4 @@
-import { FIXTURES_DIR } from '@fixtures';
+import { fixture } from '@fixtures';
 import * as fs from 'fs';
 import { TPL_PKG_ALIASES } from 'mandoc/alias.const';
 import { DocumentDescriptor } from 'mandoc/interfaces';
@@ -15,40 +15,29 @@ function markdownStream(file: string) {
 }
 
 test('Basic RenderMarkdown', () => {
-  markdownStream(
-    path.join(FIXTURES_DIR, './ipsum.md'),
-  ).pipe(through.obj((report: DocumentDescriptor, enc, cb) => {
-    expect(report.body).toBe(
-      fs.readFileSync(path.join(FIXTURES_DIR, './ipsum.html'))
-        .toString('utf8'));
-  }));
-  markdownStream(
-    path.join(FIXTURES_DIR, './keiyaku-test.md'),
-  ).pipe(through.obj((report: DocumentDescriptor, enc, cb) => {
-    expect(report.body).toBe(
-      fs.readFileSync(path.join(FIXTURES_DIR, './keiyaku-test.html'))
-        .toString('utf8'));
-    cb();
-  }));
+  markdownStream(fixture('ipsum.md'))
+    .pipe(through.obj((report: DocumentDescriptor, enc, cb) => {
+      expect(report.body).toMatchSnapshot();
+      cb();
+    }));
+  markdownStream(fixture('keiyaku-test.md'))
+    .pipe(through.obj((report: DocumentDescriptor, enc, cb) => {
+      expect(report.body).toMatchSnapshot();
+      cb();
+    }));
 });
 
 test('Basic Template Rendering', done => {
-  markdownStream(
-    path.join(FIXTURES_DIR, './ipsum.md'),
-  ).pipe(
-    getConfig(TPL_PKG_ALIASES.default, {
-      paperWidth: 446,
-      paperHeight: 446,
-    }).renderers.njk.stream,
-  ).pipe(through((chunk: Buffer, enc, cb) => {
-    expect(enc).toBe('buffer');
-    expect(chunk).toEqual(
-      fs.readFileSync(path.join(FIXTURES_DIR, './ipsum-in-template.html')),
-    );
-    // console.log(fs.readFileSync(path.join(TEST_FIXTURE, './ipsum-in-template.html')).length);
-    // console.log(chunk.length);
-    // fs.writeFileSync(path.join(TEST_FIXTURE, './ipsum-in-template.html'), chunk);
-    cb();
-    done();
-  }));
+  markdownStream(fixture('ipsum.md'))
+    .pipe(
+      getConfig(TPL_PKG_ALIASES.default, {
+        paperWidth: 446,
+        paperHeight: 446,
+      }).renderers.njk.stream)
+    .pipe(through((chunk: Buffer, enc, cb) => {
+      expect(enc).toBe('buffer');
+      expect(chunk.toString('utf8')).toMatchSnapshot();
+      cb();
+      done();
+    }));
 });

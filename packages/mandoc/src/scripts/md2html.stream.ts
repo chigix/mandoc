@@ -1,5 +1,7 @@
 import * as hljs from 'highlight.js';
+import * as _ from 'lodash';
 import * as Remarkable from 'remarkable';
+import frontMatterPlugin from 'remarkable-front-matter';
 import * as stream from 'stream';
 import * as through from 'through2';
 import { DocumentDescriptor, Path } from '../interfaces';
@@ -8,7 +10,7 @@ import { DocumentDescriptor, Path } from '../interfaces';
  * TODO accept basedir option in the future to support including compiling
  */
 function createMarkdownParser() {
-  return new Remarkable({
+  const md = new Remarkable({
     html: true,
     xhtmlOut: false,
     breaks: false,
@@ -31,6 +33,10 @@ function createMarkdownParser() {
       return '';
     },
   });
+
+  md.use(frontMatterPlugin);
+
+  return md;
 }
 
 /**
@@ -49,14 +55,19 @@ export function renderMarkdown(ctx: {
     md += chunk;
     flush();
   }, function flush(cb) {
-    this.push({
+    const env = { frontMatter: undefined };
+    const parsed = createMarkdownParser().render(md, env);
+    this.push(_.assign({
       // TODO separate first header as title
       title: 'Report',
       author: [],
       // External Resources reference is a problem here
       // TODO At least image paths could be collected through markdown parser
-      body: createMarkdownParser().render(md),
-    } as DocumentDescriptor);
+      // ?? Site Compiling should be a solution..
+      body: '',
+    } as DocumentDescriptor,
+      env.frontMatter || {},
+      { body: parsed }));
     cb();
     md = '';
   });
