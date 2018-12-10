@@ -15,7 +15,7 @@
     "url": "git+https://github.com/chigix/mandoc.git"
   },
   "engines": {
-    "node": ">= 8.9.0",
+    "node": ">= 10.10.0",
     "npm": ">= 5.5.1"
   },
   "author": "Richard Lea <chigix@zoho.com>",
@@ -34,7 +34,7 @@
     "@types/less": "^3.0.0",
     "@types/lodash": "^4.14.113",
     "@types/mathjs": "^4.4.1",
-    "@types/node": "^8.9.5",
+    "@types/node": "^10.10.3",
     "@types/npmlog": "^4.1.1",
     "@types/nunjucks": "^3.1.0",
     "@types/puppeteer": "^1.9.0",
@@ -48,7 +48,7 @@
     "gulp-less": "^4.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-typescript": "^5.0.0",
-    "jest": "^23.4.2",
+    "jest": "^23.6.0",
     "jest-config": "^23.4.2",
     "jquery": "^3.3.1",
     "klaw-sync": "^6.0.0",
@@ -60,7 +60,7 @@
     "shelljs": "^0.8.2",
     "shx": "^0.3.2",
     "slash": "^2.0.0",
-    "ts-jest": "^23.1.4",
+    "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
