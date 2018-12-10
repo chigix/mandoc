@@ -16,7 +16,7 @@
   "author": "Richard Lea <chigix@zoho.com>",
   "homepage": "https://github.com/chigix/mandoc/tree/master/packages/remarkable-front-matter#readme",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chigix/mandoc.git"

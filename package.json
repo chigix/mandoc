@@ -4,6 +4,8 @@
     "prepublishOnly": "echo \"Error: do 'publish.sh' instead of 'npm publish'\" && exit 1",
     "commit": "git-cz",
     "release": "lerna version --conventional-commits",
+    "alpha-release": "lerna version --conventional-commits prerelease --preid alpha",
+    "beta-release": "lerna version --conventional-commits prerelease --preid beta",
     "test": "lerna run test",
     "build": "lerna run build",
     "mandoc": "node ./packages/mandoc/dist/package/bin/mandoc"

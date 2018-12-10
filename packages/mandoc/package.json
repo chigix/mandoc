@@ -5,7 +5,7 @@
   "author": "Richard Lea <chigix@zoho.com>",
   "homepage": "https://github.com/chigix/mandoc",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "dist/package/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chigix/mandoc.git"
