@@ -16,6 +16,7 @@ delete json.directories;
 json.main = './index.js';
 json.module = './_esm5.index.js';
 json.es2015 = './_esm2015.index.js';
+json.typings = "./index.d.ts";
 
 function distDir(dir) {
   return path.resolve('./dist', dir || '');
@@ -23,34 +24,26 @@ function distDir(dir) {
 
 gulp.task('ts-compiling', gulp.series(
   _ => gulp.src('src/index.ts')
-    .pipe(ts.createProject({
-      extends: "../../tsconfig.base.json",
-      compilerOptions: {
-        module: "commonjs",
-        target: "es5",
-        sourceMap: false,
-      },
-    })()).pipe(gulp.dest(distDir())),
+    .pipe(ts({
+      module: "commonjs",
+      target: "es5",
+    })).pipe(gulp.dest(distDir())),
   _ => gulp.src('src/index.ts')
-    .pipe(ts.createProject({
-      extends: "../../tsconfig.base.json",
-      compilerOptions: {
-        module: "es2015",
-        target: "es5",
-        moduleResolution: "node",
-        sourceMap: false,
-      },
-    })()).pipe(rename('_esm5.index.js')).pipe(gulp.dest(distDir())),
+    .pipe(ts({
+      declaration: true,
+    })).dts.pipe(gulp.dest(distDir())),
   _ => gulp.src('src/index.ts')
-    .pipe(ts.createProject({
-      extends: "../../tsconfig.base.json",
-      compilerOptions: {
-        module: "es2015",
-        target: "es2015",
-        moduleResolution: "node",
-        sourceMap: false,
-      },
-    })()).pipe(rename('_esm2015.index.js')).pipe(gulp.dest(distDir())),
+    .pipe(ts({
+      module: "es2015",
+      target: "es5",
+      moduleResolution: "node",
+    })).pipe(rename('_esm5.index.js')).pipe(gulp.dest(distDir())),
+  _ => gulp.src('src/index.ts')
+    .pipe(ts({
+      module: "es2015",
+      target: "es2015",
+      moduleResolution: "node",
+    })).pipe(rename('_esm2015.index.js')).pipe(gulp.dest(distDir())),
 ));
 
 gulp.task('docs', function () {
